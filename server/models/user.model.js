@@ -22,6 +22,11 @@ const userSchema = new Schema({
     max: 4096,
     required: true,
   },
+  role: {
+    type: String,
+    enum: ['admin', 'user', 'bank'],
+    required: true,
+  },
 });
 
 const users = model('User', userSchema);

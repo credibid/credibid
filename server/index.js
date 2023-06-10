@@ -1,6 +1,7 @@
 const express = require('express');
 const { connectWithDatabase } = require('./db');
 const { PORT } = require('./config');
+const userRouter = require('./routers/user.route');
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.use(
 app.get('/', (req, res) => {
   res.status(200).send('Hello World');
 });
+
+app.use('/user', userRouter);
 
 const startServer = async () => {
   try {
