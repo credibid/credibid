@@ -35,6 +35,7 @@ const UserLogin = () => {
   return (
     <HStack h={'100vh'}>
       <VStack
+        display={{ base: 'none', md: 'flex' }}
         h={'full'}
         p={10}
         spacing={10}
@@ -45,12 +46,12 @@ const UserLogin = () => {
       </VStack>
 
       <VStack>
-        <Box w={'50vw'} p={10} align='center'>
+        <Box w={{ base: '100vw', md: '50vw' }} p={10} align='center'>
           <Text fontSize='3xl' fontWeight='bold' mb={5}>
             User Login
           </Text>
           <form onSubmit={handleSubmit}>
-            <VStack w={'25vw'} spacing={5}>
+            <VStack w={{ base: '80vw', md: '25vw' }} spacing={5}>
               <FormControl id='email' isRequired>
                 <FormLabel>Email</FormLabel>
                 <Input
