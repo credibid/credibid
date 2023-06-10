@@ -16,6 +16,10 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
+  celular: {
+    type: String,
+    require: true,
+  },
   password: {
     type: String,
     min: 8,
@@ -66,6 +70,39 @@ const userSchema = new Schema({
   },
   profession: {
     type: String,
+  },
+  particular_address: {
+    type: {
+      street_name: {
+        type: String,
+        require: true,
+      },
+      street_no: {
+        type: String,
+        require: true,
+      },
+      house: {
+        type: String,
+        require: true,
+      },
+      department: {
+        type: String,
+        require: true,
+      },
+      community: {
+        type: String,
+        require: true,
+      },
+      city: {
+        type: String,
+        require: true,
+      },
+      region: {
+        type: String,
+        require: true,
+      },
+    },
+    required: true,
   },
 });
 
