@@ -28,8 +28,8 @@ authRouter.get(
 authRouter.get(
   '/google/callback',
   passport.authenticate('google', {
-    successRedirect: '/profile',
-    failureRedirect: '/signin',
+    successRedirect: 'http://localhost:5173/',
+    failureRedirect: 'http://localhost:5173/login',
   })
 );
 
@@ -47,8 +47,5 @@ authRouter.get(
 // );
 
 // Profile route
-authRouter.get('/profile', (req, res) => {
-  res.send('Welcome to your profile');
-});
 
 module.exports = authRouter;
