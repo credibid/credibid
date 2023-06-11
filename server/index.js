@@ -7,6 +7,7 @@ const federatedRouter = require('./routers/googleAuth.route');
 const app = express();
 
 // Middlewares
+app.use(express.urlencoded({ extended: false }));
 app.use(
   express.json({
     limit: '10mb',
