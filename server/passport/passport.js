@@ -10,10 +10,14 @@ module.exports = (passport) => {
     done(null, user.id);
   });
 
-  passport.deserializeUser((id, done) => {
-    authUsers.findById(id, (err, user) => {
-      done(err, user);
-    });
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await authUsers.findById(id);
+      return done(null, user);
+    } catch (error) {
+      console.log(error);
+      return done(error);
+    }
   });
 
   // Local Strategy
@@ -41,20 +45,21 @@ module.exports = (passport) => {
         clientSecret: GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/callback',
       },
-      (accessToken, refreshToken, profile, done) => {
-        authUsers.findOne({ googleId: profile.id }, (err, user) => {
-          if (err) return done(err);
+      async (accessToken, refreshToken, profile, done) => {
+        try {
+          const user = await authUsers.findOne({ googleId: profile.id });
           if (user) return done(null, user);
-          const newUser = new authUsers({
+          const newUser = await new authUsers({
             googleId: profile.id,
             email: profile.emails[0].value,
             name: profile.displayName,
           });
-          newUser.save((err) => {
-            if (err) return done(err);
-            return done(null, newUser);
-          });
-        });
+          await newUser.save();
+          return done(null, newUser);
+        } catch (error) {
+          console.log(error);
+          return done(error);
+        }
       }
     )
   );
