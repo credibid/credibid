@@ -18,14 +18,7 @@ import MetaIcon from '../components/customIcons/MetaIcon';
 import MultiStepForm from '../components/UserKYC/MultiStepForm';
 
 const UserKYC = () => {
-  return (
-    <HStack>
-      <Stack w={'50vw'}>
-        <MultiStepForm />
-      </Stack>
-      <Stack w={'50vw'}></Stack>
-    </HStack>
-  );
+  return <MultiStepForm />;
 };
 
 export default UserKYC;
