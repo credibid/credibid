@@ -1,23 +1,37 @@
 import React from 'react';
 import { Button, VStack } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const QuickLink = () => {
+  const navigate = useNavigate();
   return (
     <VStack mt={10}>
-      <Button colorScheme='blue' variant={'outline'}>
+      <Button
+        colorScheme='green'
+        variant={'outline'}
+        onClick={() => {
+          navigate('/signup');
+        }}>
         User Registration
       </Button>
-      <Button colorScheme='blue' variant={'outline'}>
+      <Button
+        colorScheme='blue'
+        variant={'outline'}
+        onClick={() => {
+          navigate('/login');
+        }}>
         User / Bank / Admin Login
       </Button>
-      <Button colorScheme='blue' variant={'outline'}>
+      <Button
+        colorScheme='purple'
+        variant={'outline'}
+        onClick={() => {
+          navigate('/kyc');
+        }}>
         User KYC Form
       </Button>
-      <Button colorScheme='whatsapp' variant={'outline'}>
+      <Button colorScheme='facebook' variant={'outline'}>
         Bank Registration
-      </Button>
-      <Button colorScheme='whatsapp' variant={'outline'}>
-        Bank Login
       </Button>
     </VStack>
   );
