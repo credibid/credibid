@@ -81,8 +81,8 @@ const MultiStepForm = () => {
   };
 
   return (
-    <HStack alignItems={'flex-start'}>
-      <Stack w={'70vw'}>
+    <HStack alignItems={'flex-start'} display={{ base: 'block', md: 'flex' }}>
+      <Stack w={{ md: '70vw', base: '100vw' }}>
         <Box p={4}>
           <Progress value={((currentStep + 1) / steps.length) * 100} mb={4} />
 
@@ -120,8 +120,8 @@ const MultiStepForm = () => {
 
           {currentStep === steps.length && (
             <Box mt={4}>
-              <Button colorScheme='blue' onClick={handleFormSubmit}>
-                Submit
+              <Button colorScheme='blue' onClick={handleFormSubmit} w={'full'}>
+                Submit Form
               </Button>
             </Box>
           )}
@@ -129,12 +129,12 @@ const MultiStepForm = () => {
       </Stack>
 
       <Stack
-        w={'30vw'}
+        w={{ md: '30vw', base: '100vw' }}
         top={0}
         right={0}
-        mt={4}
+        mt={{ md: 4, base: 0 }}
         mr={4}
-        px={10}
+        px={{ md: 10, base: 2 }}
         alignItems={'flex-start'}>
         <Box
           p={4}
