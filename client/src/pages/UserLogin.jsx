@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Flex,
   FormControl,
   FormLabel,
   HStack,
@@ -14,6 +13,8 @@ import React, { useState } from 'react';
 import loginSvg from '../assets/login.svg';
 import { FcGoogle } from 'react-icons/fc';
 import MetaIcon from '../components/customIcons/MetaIcon';
+const link = import.meta.env.VITE_SERVER_URL;
+console.log(link);
 
 const UserLogin = () => {
   const [email, setEmail] = useState('');
@@ -31,6 +32,10 @@ const UserLogin = () => {
     e.preventDefault();
     console.log('Email:', email);
     console.log('Password:', password);
+  };
+
+  const handleGoogleLogin = () => {
+    window.open(`${link}/auth/google`, '_self');
   };
   return (
     <HStack h={'100vh'}>
@@ -75,9 +80,9 @@ const UserLogin = () => {
               </Button>
               <Button
                 leftIcon={<FcGoogle size={20} />}
-                type='submit'
                 colorScheme='gray'
-                width={'full'}>
+                width={'full'}
+                onClick={handleGoogleLogin}>
                 Sign in with Google
               </Button>
               <Button
