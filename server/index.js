@@ -2,6 +2,7 @@ const express = require('express');
 const { connectWithDatabase } = require('./db');
 const { PORT } = require('./config');
 const userRouter = require('./routers/user.route');
+const federatedRouter = require('./routers/googleAuth.route');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', userRouter);
+app.use('/thridpartylogin', federatedRouter);
 
 const startServer = async () => {
   try {

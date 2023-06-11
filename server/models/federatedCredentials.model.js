@@ -1,6 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const federatedCredentialSchema = new Schema({
+  user_id: {
+    type: String,
+    required: true,
+  },
   provider: {
     type: String,
     required: true,
