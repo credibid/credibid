@@ -34,6 +34,14 @@ const MultiStepForm = () => {
     setCurrentStep((prevStep) => prevStep + 1);
   };
 
+  const handleStepClick = (index) => {
+    if (currentStep === index) {
+      setCurrentStep(-1);
+    } else {
+      setCurrentStep(index);
+    }
+  };
+
   const isStepCompleted = (stepIndex) => {
     return completedSteps.includes(stepIndex);
   };
@@ -82,9 +90,18 @@ const MultiStepForm = () => {
 
   return (
     <HStack alignItems={'flex-start'} display={{ base: 'block', md: 'flex' }}>
-      <Stack w={{ md: '70vw', base: '100vw' }}>
+      <Stack
+        w={{ md: '70vw', base: '100vw' }}
+        sx={{
+          '@media print': {
+            display: 'none',
+          },
+        }}>
         <Box p={4}>
-          <Progress value={((currentStep + 1) / steps.length) * 100} mb={4} />
+          <Progress
+            value={(completedSteps.length / steps.length) * 100}
+            mb={4}
+          />
 
           <Stack spacing={4}>
             {steps.map((step, index) => (
@@ -99,7 +116,7 @@ const MultiStepForm = () => {
                   alignItems='center'
                   justifyContent='space-between'
                   cursor='pointer'
-                  onClick={() => setCurrentStep(index)}
+                  onClick={() => handleStepClick(index)}
                   bg={currentStep === index ? 'blue.100' : ''}>
                   <Text fontWeight='bold'>{step.label}</Text>
                   {isStepCompleted(index) && (

@@ -114,7 +114,7 @@ const AddressInfo = ({ handleNextStep, setParentObject }) => {
           />
         </FormControl>
         <Button colorScheme='blue' type='submit'>
-          Next
+          Submit & Preview
         </Button>
       </Stack>
     </form>

@@ -145,7 +145,7 @@ const AdditionalInfo = ({ handleNextStep, setParentObject }) => {
           />
         </FormControl>
         <Button colorScheme='blue' type='submit'>
-          Next
+          Submit & Next
         </Button>
       </Stack>
     </form>
