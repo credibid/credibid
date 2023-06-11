@@ -1,6 +1,6 @@
 const express = require('express');
 const { connectWithDatabase } = require('./db');
-const { PORT } = require('./config');
+const { PORT, SESSION_SECRET, MONGO_URI, DB_NAME } = require('./config');
 const userRouter = require('./routers/user.route');
 
 const app = express();

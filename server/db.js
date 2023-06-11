@@ -26,4 +26,4 @@ const disconnectFromDatabase = async () => {
   }
 };
 
-module.exports = { connectWithDatabase, disconnectFromDatabase };
+module.exports = { connectWithDatabase, disconnectFromDatabase, mongoose };
