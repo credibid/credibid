@@ -6,6 +6,14 @@ const userKycSchema = new Schema({
     ref: 'User',
     required: true,
   },
+  first_name: {
+    type: String,
+    required: true,
+  },
+  last_name: {
+    type: String,
+    required: true,
+  },
   celular: {
     type: String,
     require: true,

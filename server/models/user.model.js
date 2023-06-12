@@ -1,14 +1,12 @@
 const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema({
-  first_name: {
-    type: String,
-    required: true,
-  },
-  last_name: {
-    type: String,
-    required: true,
-  },
+  // first_name: {
+  //   type: String,
+  // },
+  // last_name: {
+  //   type: String,
+  // },
   email_address: {
     type: String,
     min: 3,
@@ -25,7 +23,6 @@ const userSchema = new Schema({
   role: {
     type: String,
     enum: ['admin', 'user', 'bank'],
-    required: true,
   },
 });
 
