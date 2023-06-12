@@ -14,11 +14,12 @@ import {
   VStack,
   useToast,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import signupSvg from '../assets/signup.svg';
 import { FcGoogle } from 'react-icons/fc';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import MetaIcon from '../components/customIcons/MetaIcon';
+import { useRegisterMutation } from '../features/auth/authApi';
 
 const UserSignup = () => {
   const [firstName, setFirstName] = useState('');
@@ -29,6 +30,9 @@ const UserSignup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+
+  const [signup, { data, isLoading, isError, error, isSuccess }] =
+    useRegisterMutation();
 
   const toast = useToast();
 
@@ -76,12 +80,39 @@ const UserSignup = () => {
 
     setPasswordError(false);
 
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
+    const data = {
+      email: email,
+      password: password,
+    };
+    console.log(data);
+    signup(data);
   };
+
+  useEffect(() => {
+    console.log(error);
+    console.log(data);
+  }, [error, data]);
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: 'Signup failed.',
+        description: error.data.error,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+    if (isSuccess) {
+      toast({
+        title: 'Account created.',
+        description: 'We have created your account for you.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  }, [isError, isSuccess]);
 
   return (
     <HStack h={'100vh'}>
@@ -103,7 +134,7 @@ const UserSignup = () => {
           </Text>
           <form onSubmit={handleSubmit}>
             <VStack w={{ base: '80vw', md: '25vw' }} spacing={5}>
-              <HStack w='full'>
+              {/* <HStack w='full'>
                 <FormControl id='firstName' isRequired>
                   <FormLabel>First Name</FormLabel>
                   <Input
@@ -122,7 +153,7 @@ const UserSignup = () => {
                     variant='filled'
                   />
                 </FormControl>
-              </HStack>
+              </HStack> */}
               <FormControl id='email' isRequired>
                 <FormLabel>Email</FormLabel>
                 <Input
