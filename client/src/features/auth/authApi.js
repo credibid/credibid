@@ -3,6 +3,14 @@ import { userLoggedIn } from './authSlice';
 import Cookies from 'js-cookie';
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    register: builder.mutation({
+      query: (body) => ({
+        url: '/auth/signup',
+        method: 'POST',
+        body,
+      }),
+    }),
+
     login: builder.mutation({
       query: (body) => ({
         url: '/auth/login',
@@ -35,6 +43,13 @@ export const authApi = apiSlice.injectEndpoints({
       },
     }),
 
+    updateUserInfo: builder.mutation({
+      query: (body) => ({
+        url: '/auth/updateuser',
+        method: 'PUT',
+        body,
+      }),
+    }),
     getUser: builder.query({
       query: () => ({
         url: '/auth/user',
@@ -44,4 +59,9 @@ export const authApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetUserQuery, useLoginMutation } = authApi;
+export const {
+  useGetUserQuery,
+  useRegisterMutation,
+  useLoginMutation,
+  useUpdateUserInfoMutation,
+} = authApi;
