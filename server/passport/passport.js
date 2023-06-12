@@ -2,7 +2,12 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require('../config');
+const bcrypt = require('bcrypt');
+const {
+  GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET,
+  FRONTEND_CLIENT,
+} = require('../config');
 const authUsers = require('../models/authUser.model');
 
 module.exports = (passport) => {
@@ -22,19 +27,42 @@ module.exports = (passport) => {
 
   // Local Strategy
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-      authUsers.findOne({ email: email }, (err, user) => {
-        if (err) return done(err);
-        if (!user)
-          return done(null, false, { message: 'Invalid email or password' });
-        user.comparePassword(password, (err, isMatch) => {
-          if (err) return done(err);
-          if (!isMatch)
-            return done(null, false, { message: 'Invalid email or password' });
-          return done(null, user);
-        });
-      });
-    })
+    new LocalStrategy(
+      { usernameField: 'email' },
+      async (email, password, done) => {
+        try {
+          // authUsers.findOne({ email: email }, (err, user) => {
+          //   if (err) return done(err);
+          //   if (!user)
+          //     return done(null, false, {
+          //       message: 'Invalid email or password',
+          //     });
+          //   user.comparePassword(password, (err, isMatch) => {
+          //     if (err) return done(err);
+          //     if (!isMatch)
+          //       return done(null, false, {
+          //         message: 'Invalid email or password',
+          //       });
+          //     return done(null, user);
+          //   });
+          // });
+          const user = await authUsers.findOne({ email: email });
+          if (!user) return done(null, false, { error: 'User not found' });
+
+          user.comparePassword(password, (err, isMatch) => {
+            if (err) return done(err);
+            if (!isMatch)
+              return done(null, false, {
+                message: 'Invalid email or password',
+              });
+            return done(null, user);
+          });
+        } catch (error) {
+          console.log(error);
+          return done(error);
+        }
+      }
+    )
   );
 
   // Google Strategy

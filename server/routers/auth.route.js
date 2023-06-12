@@ -1,13 +1,16 @@
 const express = require('express');
 const passport = require('passport');
+const { FRONTEND_CLIENT, SERVER_URL } = require('../config');
+const { signupMiddleware } = require('../middlewares/signup.middleware');
 const authRouter = express.Router();
 
 // Local signup
 authRouter.post(
   '/signup',
+  signupMiddleware,
   passport.authenticate('local', {
-    successRedirect: '/profile',
-    failureRedirect: '/signup',
+    successRedirect: `${FRONTEND_CLIENT}/`,
+    failureRedirect: `${FRONTEND_CLIENT}/login`,
   })
 );
 
@@ -15,8 +18,8 @@ authRouter.post(
 authRouter.post(
   '/signin',
   passport.authenticate('local', {
-    successRedirect: '/profile',
-    failureRedirect: '/signin',
+    successRedirect: `${FRONTEND_CLIENT}/`,
+    failureRedirect: `${FRONTEND_CLIENT}/login`,
   })
 );
 
@@ -26,10 +29,10 @@ authRouter.get(
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 authRouter.get(
-  '/google/callback',
+  `/google/callback`,
   passport.authenticate('google', {
-    successRedirect: 'http://localhost:5173/',
-    failureRedirect: 'http://localhost:5173/login',
+    successRedirect: `${FRONTEND_CLIENT}/`,
+    failureRedirect: `${FRONTEND_CLIENT}/login`,
   })
 );
 
@@ -41,8 +44,8 @@ authRouter.get(
 // authRouter.get(
 //   '/facebook/callback',
 //   passport.authenticate('facebook', {
-//     successRedirect: '/profile',
-//     failureRedirect: '/signin',
+//     successRedirect: `${FRONTEND_CLIENT}/`,
+//     failureRedirect: `${FRONTEND_CLIENT}/login`,
 //   })
 // );
 

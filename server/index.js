@@ -1,9 +1,10 @@
 const express = require('express');
 const passport = require('passport');
+const cors = require('cors');
 require('./passport/passport')(passport);
 const session = require('express-session');
 const { connectWithDatabase } = require('./db');
-const { PORT, SESSION_SECRET } = require('./config');
+const { PORT, SESSION_SECRET, FRONTEND_CLIENT } = require('./config');
 const userRouter = require('./routers/user.route');
 const authRouter = require('./routers/auth.route');
 
@@ -15,6 +16,7 @@ app.use(
     limit: '10mb',
   })
 );
+app.use(cors());
 
 // Routes
 app.get('/', (req, res) => {

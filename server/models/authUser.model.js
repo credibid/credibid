@@ -26,6 +26,11 @@ authUserSchema.methods.comparePassword = function (
   candidatePassword,
   callback
 ) {
+  console.log(
+    'candidatePassword, this.password',
+    candidatePassword,
+    this.password
+  );
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) return callback(err);
     callback(null, isMatch);
