@@ -13,30 +13,30 @@ export const authApi = apiSlice.injectEndpoints({
 
     login: builder.mutation({
       query: (body) => ({
-        url: '/auth/login',
+        url: '/auth/signin',
         method: 'POST',
         body,
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
+          console.log('result', result);
+          // Cookies.set(
+          //   'auth',
+          //   JSON.stringify({
+          //     accessToken: result.data.accessToken,
 
-          Cookies.set(
-            'auth',
-            JSON.stringify({
-              accessToken: result.data.accessToken,
+          //     user: result.data.user,
+          //   }),
+          //   { expires: 1 } // 1 day
+          // );
 
-              user: result.data.user,
-            }),
-            { expires: 1 } // 1 day
-          );
-
-          dispatch(
-            userLoggedIn({
-              accessToken: result.data.accessToken,
-              user: result.data.user,
-            })
-          );
+          // dispatch(
+          //   userLoggedIn({
+          //     accessToken: result.data.accessToken,
+          //     user: result.data.user,
+          //   })
+          // );
         } catch (err) {
           // do nothing
         }
@@ -56,6 +56,13 @@ export const authApi = apiSlice.injectEndpoints({
         method: 'GET',
       }),
     }),
+    thirdPartyLogin: builder.mutation({
+      query: (body) => ({
+        url: '/auth/thirdpartylogin',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
@@ -64,4 +71,5 @@ export const {
   useRegisterMutation,
   useLoginMutation,
   useUpdateUserInfoMutation,
+  useThirdPartyLoginMutation,
 } = authApi;

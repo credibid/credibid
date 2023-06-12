@@ -134,7 +134,7 @@ const UserSignup = () => {
           </Text>
           <form onSubmit={handleSubmit}>
             <VStack w={{ base: '80vw', md: '25vw' }} spacing={5}>
-              <HStack w='full'>
+              {/* <HStack w='full'>
                 <FormControl id='firstName' isRequired>
                   <FormLabel>First Name</FormLabel>
                   <Input
@@ -153,7 +153,7 @@ const UserSignup = () => {
                     variant='filled'
                   />
                 </FormControl>
-              </HStack>
+              </HStack> */}
               <FormControl id='email' isRequired>
                 <FormLabel>Email</FormLabel>
                 <Input
