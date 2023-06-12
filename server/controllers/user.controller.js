@@ -3,7 +3,7 @@ const { encryptPassword } = require('../utils/password');
 
 const createUser = async (req, res) => {
   try {
-    const { first_name, last_name, email_address, password, role } = req.body;
+    const { email_address, password } = req.body;
     const existingUser = await users.findOne({ email_address });
 
     if (existingUser)
