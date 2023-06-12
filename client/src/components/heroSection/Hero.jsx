@@ -253,7 +253,11 @@ const hero = () => {
             <Stack spacing={6} w={'full'} maxW={'lg'}>
               <Stack direction={{ base: 'column', md: 'row' }} spacing={100} mb={10} mt={20}>
                 <Button
-                p={7}
+                // p={7}
+                pl={10}
+                pr={10}
+                pt={7}
+                pb={7}
                 fontSize={30}
                   rounded={'full'}
                   bg={'blue.400'}
@@ -264,7 +268,10 @@ const hero = () => {
                   Create Project
                 </Button>
                 <Button 
-                p={7}
+                pl={10}
+                pr={10}
+                pt={7}
+                pb={7}
                 fontSize={30}
                 color={'blue.400'}
                 bg={'white'}
