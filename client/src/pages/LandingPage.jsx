@@ -5,6 +5,7 @@ import NavbarIII from '../components/navbar/NavbarIII'
 import Footer from '../components/footer/footer'
 import PartnerSection from '../components/partnerSection/PartnerSection'
 import PartnerSectionII from '../components/partnerSection/PartnerSectionII'
+import Hero from '../components/heroSection/hero'
 
 const LandingPage = () => {
   return (
@@ -12,6 +13,7 @@ const LandingPage = () => {
         {/* <Navbar /> */}
         {/* <NavbarII/> */}
         <NavbarIII></NavbarIII>
+        <Hero></Hero>
         <PartnerSection></PartnerSection>
         {/* <PartnerSectionII></PartnerSectionII> */}
         <Footer></Footer>

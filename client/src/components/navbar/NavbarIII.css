@@ -1,5 +1,6 @@
 .container{
     padding: 0 60px;
+    background: linear-gradient(180deg, rgba(70,127,213,1) 1%, rgba(86,138,217,1) 100%);
   }
   
   .sub-container{
@@ -46,9 +47,9 @@
     font-size: 20px;
     text-decoration: none;
     text-transform: uppercase;
-    color: #000000;
+    color: #f9f7f7;
   }
   
   .nav-menu ul li a:hover{
-    color: rgb(8, 8, 8);
+    color: rgb(218, 213, 213);
   }
