@@ -6,6 +6,7 @@ import Footer from '../components/footer/footer'
 import PartnerSection from '../components/partnerSection/PartnerSection'
 import PartnerSectionII from '../components/partnerSection/PartnerSectionII'
 import Hero from '../components/heroSection/hero'
+import HowItWorks from '../components/howItWorks/howItWorks'
 
 const LandingPage = () => {
   return (
@@ -14,6 +15,7 @@ const LandingPage = () => {
         {/* <NavbarII/> */}
         <NavbarIII></NavbarIII>
         <Hero></Hero>
+        <HowItWorks></HowItWorks>
         <PartnerSection></PartnerSection>
         {/* <PartnerSectionII></PartnerSectionII> */}
         <Footer></Footer>
