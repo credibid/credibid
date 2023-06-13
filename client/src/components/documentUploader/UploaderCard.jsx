@@ -10,9 +10,28 @@ import {
     Link,
     Badge,
     useColorModeValue,
+    FormLabel,
+    Input
   } from '@chakra-ui/react';
+  import axios from "axios";
+  import './UploaderCard.css'
 
-const UploaderCard = () => {
+const UploaderCard = ({title}) => {
+    const cloudinaryAPIUrl = "https://api.cloudinary.com/v1_1/dftfcxnxd";
+    const [docFile, setDocFile] = React.useState('')
+
+    const handleFileUpload = (e) =>{
+        setDocFile(e.target.files[0])
+    }
+    const uploadDocFile = async () =>{
+        const formData = new FormData();
+        formData.append("file", docFile);
+        formData.append("upload_preset", "horen123");
+        formData.append("cloud_name", "dftfcxnxd");
+        const res = await axios.post(`${cloudinaryAPIUrl}/image/upload`, formData);  
+        console.log(res.data.secure_url) 
+    }
+
     return (
         <Center py={6}>
           <Box
@@ -26,66 +45,38 @@ const UploaderCard = () => {
             <Avatar
               size={'xl'}
               src={
-                'https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ'
+                'https://res.cloudinary.com/dftfcxnxd/image/upload/v1686652595/314777_inbox_upload_icon_vzfer0.svg'
               }
               alt={'Avatar Alt'}
               mb={4}
               pos={'relative'}
-              _after={{
-                content: '""',
-                w: 4,
-                h: 4,
-                bg: 'green.300',
-                border: '2px solid white',
-                rounded: 'full',
-                pos: 'absolute',
-                bottom: 0,
-                right: 3,
-              }}
+            //   _after={{
+            //     content: '""',
+            //     w: 4,
+            //     h: 4,
+            //     bg: 'green.300',
+            //     border: '2px solid white',
+            //     rounded: 'full',
+            //     pos: 'absolute',
+            //     bottom: 0,
+            //     right: 3,
+            //   }}
             />
             <Heading fontSize={'2xl'} fontFamily={'body'}>
-              Lindsey James
+              {title}
             </Heading>
-            <Text fontWeight={600} color={'gray.500'} mb={4}>
-              @lindsey_jam3s
-            </Text>
-            <Text
+            {/* <Text
               textAlign={'center'}
               color={useColorModeValue('gray.700', 'gray.400')}
               px={3}>
-              Actress, musician, songwriter and artist. PM for work inquires or{' '}
-              <Link href={'#'} color={'blue.400'}>
-                #tag
-              </Link>{' '}
+              Actress, musician, songwriter and artist. PM for work inquires or
               me in your posts
-            </Text>
+            </Text> */}
     
-            <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
-              <Badge
-                px={2}
-                py={1}
-                bg={useColorModeValue('gray.50', 'gray.800')}
-                fontWeight={'400'}>
-                #art
-              </Badge>
-              <Badge
-                px={2}
-                py={1}
-                bg={useColorModeValue('gray.50', 'gray.800')}
-                fontWeight={'400'}>
-                #photography
-              </Badge>
-              <Badge
-                px={2}
-                py={1}
-                bg={useColorModeValue('gray.50', 'gray.800')}
-                fontWeight={'400'}>
-                #music
-              </Badge>
-            </Stack>
+            
     
             <Stack mt={8} direction={'row'} spacing={4}>
-              <Button
+              {/* <Button
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
@@ -93,7 +84,10 @@ const UploaderCard = () => {
                   bg: 'gray.200',
                 }}>
                 Message
-              </Button>
+              </Button> */}
+              <FormLabel for={'up_doc'} className='upload_label' ms='4px' fontSize='sm' fontWeight='normal'>{ docFile ? docFile.name : 'Click here to upload'}</FormLabel>
+            <Input className='upload_field' type='file' name='up_doc' id='up_doc' onChange={handleFileUpload}/>
+            {/* <Input type='file' name='emp_image' onChange={handleImage} /> */}
               <Button
                 flex={1}
                 fontSize={'sm'}
@@ -108,8 +102,10 @@ const UploaderCard = () => {
                 }}
                 _focus={{
                   bg: 'blue.500',
-                }}>
-                Follow
+                }}
+                onClick={uploadDocFile}
+                >
+                Subir
               </Button>
             </Stack>
           </Box>

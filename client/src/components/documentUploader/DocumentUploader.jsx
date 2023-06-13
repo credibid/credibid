@@ -25,33 +25,33 @@ const DocumentUploader = () => {
             fontSize={{ base: '2xl', md: '5xl' }}
             fontWeight={700}
             color={'blue.500'}
-            >QUIERES SER SOCIO?</Text>
+            >Sube tu informacion</Text>
             </Center>
         </Container>
         <SimpleGrid columns={4}>
         <Box>
-            <UploaderCard />
+            <UploaderCard title={'Ultimas 3 liquidacions de sueldo'} />
         </Box>
         <Box>
-            <UploaderCard />
+            <UploaderCard title={'Declaracion impuestos 2023'} />
         </Box>
         <Box>
-            <UploaderCard />
+            <UploaderCard title={'Ultimas 12 cotizaciones AFP'} />
         </Box>
         <Box>
-            <UploaderCard />
+            <UploaderCard title={'Cartola o pantallazo del saldo de inversiones'} />
         </Box>
         <Box>
-            <UploaderCard />
+            <UploaderCard title={'Certificado Matrimonio'} />
         </Box>
         <Box>
-            <UploaderCard />
+            <UploaderCard title={'Certificado antecedentes penales'} />
         </Box>
         <Box>
-            <UploaderCard />
+            <UploaderCard title={'Promesa de compra venta'} />
         </Box>
         <Box>
-            <UploaderCard />
+            <UploaderCard title={'Ultimas 3 liquidacions sueldo'} />
         </Box>
         </SimpleGrid>
     </Box>

@@ -1,0 +1,11 @@
+.upload_label{
+    color: #3182CE;
+    border: 2px solid #3182CE;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.upload_field{
+    display: none;
+}
