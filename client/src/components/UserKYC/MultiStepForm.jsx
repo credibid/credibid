@@ -19,6 +19,7 @@ import PersonalInfo from './PersonalInfo';
 import AddressInfo from './AddressInfo';
 import BasicInfo from './BasicInfo';
 import { FiCheckSquare } from 'react-icons/fi';
+import { useCreatekycMutation } from '../../features/user/userApi';
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -26,6 +27,8 @@ const MultiStepForm = () => {
   const [parentObject, setParentObject] = useState({});
   const toast = useToast();
 
+  const [createKYC, { data, isLoading, isError, error, isSuccess }] =
+    useCreatekycMutation();
   const handleNextStep = () => {
     setCompletedSteps((prevCompletedSteps) => [
       ...prevCompletedSteps,
@@ -78,6 +81,7 @@ const MultiStepForm = () => {
 
   const handleFormSubmit = () => {
     console.log(parentObject);
+    createKYC(parentObject);
 
     toast({
       title: 'Success',

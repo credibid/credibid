@@ -39,7 +39,7 @@ const UserLogin = () => {
     e.preventDefault();
     console.log('Email:', email);
     console.log('Password:', password);
-    login({ email, password });
+    login({ email_address: email, password });
   };
 
   const [
@@ -50,7 +50,6 @@ const UserLogin = () => {
       isSuccess: thirdPartySuccess,
     },
   ] = useThirdPartyLoginMutation();
-  console.log(data, error);
   const handleGoogleLogin = () => {
     window.open(`${link}/auth/google`, '_self');
   };

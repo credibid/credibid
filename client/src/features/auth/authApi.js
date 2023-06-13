@@ -5,7 +5,7 @@ export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     register: builder.mutation({
       query: (body) => ({
-        url: '/auth/signup',
+        url: '/user/createUser',
         method: 'POST',
         body,
       }),
@@ -13,7 +13,7 @@ export const authApi = apiSlice.injectEndpoints({
 
     login: builder.mutation({
       query: (body) => ({
-        url: '/auth/signin',
+        url: '/user/login',
         method: 'POST',
         body,
       }),
@@ -21,22 +21,23 @@ export const authApi = apiSlice.injectEndpoints({
         try {
           const result = await queryFulfilled;
           console.log('result', result);
-          // Cookies.set(
-          //   'auth',
-          //   JSON.stringify({
-          //     accessToken: result.data.accessToken,
+          Cookies.set(
+            'auth',
+            JSON.stringify({
+              token: result.data.token,
+              email_address: result.data.email_address,
+              role: result.data.role,
+            }),
+            { expires: 1 } // 1 day
+          );
 
-          //     user: result.data.user,
-          //   }),
-          //   { expires: 1 } // 1 day
-          // );
-
-          // dispatch(
-          //   userLoggedIn({
-          //     accessToken: result.data.accessToken,
-          //     user: result.data.user,
-          //   })
-          // );
+          dispatch(
+            userLoggedIn({
+              accessToken: result.data.accessToken,
+              email_address: result.data.email_address,
+              role: result.data.role,
+            })
+          );
         } catch (err) {
           // do nothing
         }

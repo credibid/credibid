@@ -2,9 +2,16 @@ import { apiSlice } from '../api/apiSlice';
 
 export const userApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    createUser: builder.mutation({
+    createkyc: builder.mutation({
       query: (data) => ({
-        url: `/user/createUser`,
+        url: `/user/createkyc`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    setRole: builder.mutation({
+      query: (data) => ({
+        url: `/user/setRole`,
         method: 'POST',
         body: data,
       }),
@@ -12,4 +19,4 @@ export const userApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useCreateUserMutation } = userApi;
+export const { useCreatekycMutation, useSetRoleMutation } = userApi;

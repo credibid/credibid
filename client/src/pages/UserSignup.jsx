@@ -81,7 +81,7 @@ const UserSignup = () => {
     setPasswordError(false);
 
     const data = {
-      email: email,
+      email_address: email,
       password: password,
     };
     console.log(data);
@@ -97,7 +97,7 @@ const UserSignup = () => {
     if (isError) {
       toast({
         title: 'Signup failed.',
-        description: error.data.error,
+        description: error?.data?.error || 'Unknown error',
         status: 'error',
         duration: 3000,
         isClosable: true,
