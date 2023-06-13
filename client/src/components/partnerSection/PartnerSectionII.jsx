@@ -16,7 +16,7 @@ const PartnerSectionII = ({title, facilities, buttonText, subTitle}) => {
   return (
     <Center py={6}>
       <Box
-        maxW={'330px'}
+        maxW={'530px'}
         w={'full'}
         bg={useColorModeValue('white', 'gray.800')}
         boxShadow={'2xl'}
