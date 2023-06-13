@@ -11,7 +11,8 @@ export default function useAuthCheck() {
     const cookieAuth = Cookies.get('auth');
     if (cookieAuth) {
       const auth = JSON.parse(cookieAuth);
-      if (auth?.token && auth?.id) {
+      console.log(auth);
+      if (auth?.token) {
         // dispatch userLoggedIn action
         dispatch(
           userLoggedIn({

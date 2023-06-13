@@ -11,7 +11,6 @@ import UserSignup from './pages/UserSignup';
 
 const App = () => {
   const authChecked = useAuthCheck();
-  const roleCheck = useRoleCheck();
   if (!authChecked) {
     return <div />;
   }
