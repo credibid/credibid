@@ -11,7 +11,7 @@ export const userApi = apiSlice.injectEndpoints({
     }),
     setRole: builder.mutation({
       query: (data) => ({
-        url: `/user/setRole`,
+        url: `/user/setuserrole`,
         method: 'POST',
         body: data,
       }),
