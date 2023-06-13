@@ -13,8 +13,7 @@ const Footer = () => {
   return (
     <Box
     mt={20}
-    //   bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}>
+    color={useColorModeValue('gray.700', 'gray.200')}>
       <Container
         fontWeight={600}
         as={Stack}
@@ -43,7 +42,6 @@ const Footer = () => {
           <Link href={'#'}>REGISTRO</Link>
           <Link href={'#'}>LOGIN</Link>
         </Stack>
-        {/* <Text>© 2022 Chakra Templates. All rights reserved</Text> */}
       </Container>
     </Box>
   )

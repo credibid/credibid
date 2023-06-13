@@ -16,7 +16,6 @@ const HowItWorks = () => {
             <Center>
             <Text 
         pb={10}
-        // pl={'10vw'}
         fontSize={{ base: '2xl', md: '5xl' }}
         fontWeight={700}
         color={'blue.500'}
@@ -27,9 +26,6 @@ const HowItWorks = () => {
         <Box>
             <div className='step_card'>
                 <Card borderRadius={35} h={'50vh'} >
-                    {/* <Container>
-                        <Center><Card bg={'red'} h={30} w={80}></Card></Center>
-                    </Container> */}
                     <Box 
                     mt={20}
                     ml={10}

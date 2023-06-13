@@ -175,28 +175,8 @@ const hero = () => {
           <Flex p={8} flex={1} align={'center'} justify={'center'}>
             <Stack spacing={6} w={'full'} maxW={'lg'}>
               <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
-                {/* <Text
-                  as={'span'}
-                  position={'relative'}
-                  _after={{
-                    content: "''",
-                    width: 'full',
-                    height: useBreakpointValue({ base: '20%', md: '30%' }),
-                    position: 'absolute',
-                    bottom: 1,
-                    left: 0,
-                    bg: 'blue.400',
-                    zIndex: -1,
-                  }}>
-                  Freelance
-                </Text> */}
-                {/* <br />{' '} */}
                 <Image
-            // mt={{base:5, md:20}}
-            h={'8vh'}
-            // w={'45vw'}
-            
-
+              h={'8vh'}
               src={
                 'https://res.cloudinary.com/dftfcxnxd/image/upload/v1686556930/Screenshot_2023-06-12_at_1.58.24_pm-removebg-preview_1_ktjsxc.png'
               }
@@ -214,22 +194,6 @@ const hero = () => {
                   HIPOTECA
                 </Text>
               </Heading>
-              {/* <Text fontSize={{ base: 'md', lg: 'lg' }} color={'gray.500'}>
-                The project board is an exclusive resource for contract work. It's
-                perfect for freelancers, agencies, and moonlighters.
-              </Text> */}
-              {/* <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
-                <Button
-                  rounded={'full'}
-                  bg={'blue.400'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'blue.500',
-                  }}>
-                  Create Project
-                </Button>
-                <Button rounded={'full'}>How It Works</Button>
-              </Stack> */}
             </Stack>
           </Flex>
           <Flex flex={1}>
@@ -238,10 +202,7 @@ const hero = () => {
             h={'40vh'}
             w={'45vw'}
             alt={'Login Image'}
-            //   objectFit={'contain'}
              borderRadius={80}
-            // rounded={'full'}
-
               src={
                 'https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
               }
@@ -253,7 +214,6 @@ const hero = () => {
             <Stack spacing={6} w={'full'} maxW={'lg'}>
               <Stack direction={{ base: 'column', md: 'row' }} spacing={100} mb={10} mt={20}>
                 <Button
-                // p={7}
                 pl={10}
                 pr={10}
                 pt={7}

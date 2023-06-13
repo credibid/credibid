@@ -12,12 +12,11 @@ const PartnerSection = () => {
         <Container pt={50}>
             <Center>
             <Text 
-        pb={10}
-        // pl={'10vw'}
-        fontSize={{ base: '2xl', md: '5xl' }}
-        fontWeight={700}
-        color={'blue.500'}
-        >QUIERES SER SOCIO?</Text>
+            pb={10}
+            fontSize={{ base: '2xl', md: '5xl' }}
+            fontWeight={700}
+            color={'blue.500'}
+            >QUIERES SER SOCIO?</Text>
             </Center>
         </Container>
         <SimpleGrid columns={2}>
@@ -27,24 +26,6 @@ const PartnerSection = () => {
         <Box>
             <PartnerSectionII title={'Interested in our solution ?'} facilities={['Builder/Developer', 'Real estate broker', 'Finding the Finance']} buttonText={'Register as a special customer'} subTitle={'We know that the sale depends on the customer accepting and finding the financing'}></PartnerSectionII>
         </Box>
-        {/* <Box>
-            <Flex height={50}  bg='purple.600' color='white' display="flex" alignItems={'center'} justifyContent={'center'} alignContent={'center'}>
-                <Center display="flex" alignItems={"center"}>
-                    <Text align={'center'} alignItems={'center'}>Te interesa nuestra solucion?</Text>
-                </Center>
-            </Flex>
-            
-            <Text align={'center'}>Sabemos que la venta depende de quel el cliente acepte y que encuentre el financiamiento</Text>
-            <SimpleGrid columns={2} spacing={20}>
-                <Box bg='teal' >dfgdf</Box>
-                <Box bg='teal' >dfgdfg</Box>
-            </SimpleGrid>
-            <Container height={50}  bg='#D9D9D9' color='black' alignContent={'center'}>
-                <Center>
-                    <Text fontWeight={'500'} align={'center'}>Te interesa nuestra solucion?</Text>
-                </Center>
-            </Container>
-        </Box> */}
         </SimpleGrid>
     </Box>
   )

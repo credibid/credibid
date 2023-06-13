@@ -27,22 +27,10 @@ const PartnerSectionII = ({title, facilities, buttonText, subTitle}) => {
           p={6}
           color={useColorModeValue('gray.800', 'white')}
           align={'center'}>
-          {/* <Text
-            fontSize={'sm'}
-            fontWeight={500}
-            bg={useColorModeValue('green.50', 'green.900')}
-            p={2}
-            px={3}
-            color={'green.500'}
-            rounded={'full'}>
-            Hobby
-          </Text> */}
           <Stack direction={'row'} align={'center'} justify={'center'}>
-            {/* <Text fontSize={'3xl'}>$</Text> */}
             <Text fontSize={'2xl'} fontWeight={600}>
               {title}
             </Text>
-            {/* <Text color={'gray.500'}>/month</Text> */}
           </Stack>
         </Stack>
         <Text
@@ -52,7 +40,6 @@ const PartnerSectionII = ({title, facilities, buttonText, subTitle}) => {
             p={2}
             px={3}
             color={'blue.500'}
-            // rounded={'full'}
             >
             {subTitle}
           </Text>

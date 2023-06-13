@@ -11,13 +11,10 @@ import HowItWorks from '../components/howItWorks/howItWorks'
 const LandingPage = () => {
   return (
     <div>
-        {/* <Navbar /> */}
-        {/* <NavbarII/> */}
         <NavbarIII></NavbarIII>
         <Hero></Hero>
         <HowItWorks></HowItWorks>
         <PartnerSection></PartnerSection>
-        {/* <PartnerSectionII></PartnerSectionII> */}
         <Footer></Footer>
     </div>
   )
