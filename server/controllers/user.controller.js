@@ -201,6 +201,25 @@ const createKyc = async (req, res) => {
   }
 };
 
+const setUserRole = async (req, res) => {
+  try {
+    const userId = req.authUser;
+    const { role } = req.body;
+    const roles = ['admin', 'user', 'bank'];
+    if (!roles.includes(role))
+      return res.status(400).json({
+        error: 'Invalid role. Valid roles are "admin", "user" and "bank"',
+      });
+    const currentUser = await users.findById(userId);
+    currentUser.role = role;
+    await currentUser.save();
+    return res.status(200).json(currentUser);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 module.exports = {
   createUser,
   loginUser,
@@ -208,4 +227,5 @@ module.exports = {
   getUserByToken,
   thirdPartyLogin,
   createKyc,
+  setUserRole,
 };
