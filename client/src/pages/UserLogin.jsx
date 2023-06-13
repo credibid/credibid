@@ -9,7 +9,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import loginSvg from '../assets/login.svg';
 import { FcGoogle } from 'react-icons/fc';
 import MetaIcon from '../components/customIcons/MetaIcon';
@@ -20,11 +20,12 @@ import {
 const link = import.meta.env.VITE_SERVER_URL;
 console.log(link);
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
 
 const UserLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -37,9 +38,8 @@ const UserLogin = () => {
     useLoginMutation();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    login({ email, password });
+
+    login({ email_address: email, password });
   };
 
   const [
@@ -50,10 +50,15 @@ const UserLogin = () => {
       isSuccess: thirdPartySuccess,
     },
   ] = useThirdPartyLoginMutation();
-  console.log(data, error);
   const handleGoogleLogin = () => {
     window.open(`${link}/auth/google`, '_self');
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/');
+    }
+  }, [isSuccess]);
   return (
     <HStack h={'100vh'}>
       <VStack

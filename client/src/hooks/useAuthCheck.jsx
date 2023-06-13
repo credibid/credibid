@@ -11,12 +11,13 @@ export default function useAuthCheck() {
     const cookieAuth = Cookies.get('auth');
     if (cookieAuth) {
       const auth = JSON.parse(cookieAuth);
-      if (auth?.accessToken && auth?.user) {
+      console.log(auth);
+      if (auth?.token) {
         // dispatch userLoggedIn action
         dispatch(
           userLoggedIn({
-            accessToken: auth.accessToken,
-            user: auth.user,
+            token: auth.token,
+            email_address: auth.email_address,
             role: auth.role,
           })
         );
