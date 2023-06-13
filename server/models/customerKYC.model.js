@@ -121,6 +121,6 @@ const userKycSchema = new Schema({
   },
 });
 
-const userKycs = model('UserKYC', userKycSchema);
+const customerKycs = model('UserKYC', userKycSchema);
 
-module.exports = userKycs;
+module.exports = customerKycs;
