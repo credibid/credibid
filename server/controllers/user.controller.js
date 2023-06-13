@@ -10,13 +10,13 @@ const createUser = async (req, res) => {
 
     if (existingUser)
       return res
-        .status(200)
-        .json({ info: 'User with given email already exists!' });
+        .status(400)
+        .json({ error: 'User with given email already exists!' });
 
     if (password.length < 8)
       return res
-        .status(200)
-        .json({ info: 'Password must be at least 8 character long' });
+        .status(400)
+        .json({ error: 'Password must be at least 8 character long' });
 
     const encryptedPassword = await encryptPassword(password);
 
