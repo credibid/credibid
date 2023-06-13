@@ -13,8 +13,13 @@ import React, { useState } from 'react';
 import loginSvg from '../assets/login.svg';
 import { FcGoogle } from 'react-icons/fc';
 import MetaIcon from '../components/customIcons/MetaIcon';
+import {
+  useLoginMutation,
+  useThirdPartyLoginMutation,
+} from '../features/auth/authApi';
 const link = import.meta.env.VITE_SERVER_URL;
 console.log(link);
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 const UserLogin = () => {
   const [email, setEmail] = useState('');
@@ -28,12 +33,24 @@ const UserLogin = () => {
     setPassword(e.target.value);
   };
 
+  const [login, { data, isLoading, isError, error, isSuccess }] =
+    useLoginMutation();
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Email:', email);
     console.log('Password:', password);
+    login({ email, password });
   };
 
+  const [
+    thirdPartyLogin,
+    {
+      data: thirdPartyData,
+      error: thirdPartyError,
+      isSuccess: thirdPartySuccess,
+    },
+  ] = useThirdPartyLoginMutation();
+  console.log(data, error);
   const handleGoogleLogin = () => {
     window.open(`${link}/auth/google`, '_self');
   };
@@ -92,6 +109,30 @@ const UserLogin = () => {
                 width={'full'}>
                 Sign in with Meta
               </Button>
+
+              <GoogleOAuthProvider clientId='211149816915-592u5vukc6nrfk5bk0vphpimu6cmvtf0.apps.googleusercontent.com'>
+                <GoogleLogin
+                  size='large'
+                  theme='outline'
+                  useOneTap
+                  onSuccess={(credentialResponse) => {
+                    const token = credentialResponse.credential;
+                    // const decode = jwt_decode(token);
+                    // const user = {
+                    //   name: decode.given_name,
+                    //   email: decode.email,
+                    //   role: 'hr',
+                    //   githubUsername: 'hr-dummy-github',
+                    // };
+                    thirdPartyLogin({ token });
+                  }}
+                  onError={() => {
+                    console.log('Login Failed');
+                  }}
+                  // type={'icon'}
+                />
+              </GoogleOAuthProvider>
+              {/* asdasf */}
             </VStack>
           </form>
         </Box>

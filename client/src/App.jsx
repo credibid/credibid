@@ -1,12 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import useAuthCheck from './hooks/useAuthCheck';
 import QuickLink from './pages/QuickLink';
 import UserKYC from './pages/UserKYC';
 import UserLogin from './pages/UserLogin';
 import UserSignup from './pages/UserSignup';
 
 const App = () => {
-  return (
+  const authChecked = useAuthCheck();
+  return !authChecked ? (
+    // <Spinner size={'xl'}></Spinner>
+    <div />
+  ) : (
     <BrowserRouter>
       <Routes>
         <Route exact path='/' element={<QuickLink />} />
