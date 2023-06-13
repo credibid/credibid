@@ -1,16 +1,16 @@
 const { Schema, model } = require('mongoose');
 
 const userKycSchema = new Schema({
-  user_id: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
-  first_name: {
+  firstName: {
     type: String,
     required: true,
   },
-  last_name: {
+  lastName: {
     type: String,
     required: true,
   },
@@ -34,27 +34,35 @@ const userKycSchema = new Schema({
       'third gender',
     ],
   },
+  dependants: {
+    type: String,
+    required: true,
+  },
   nationality: {
     type: String,
     required: true,
   },
-  civil_status: {
+  civilStatus: {
     type: String,
     required: true,
   },
-  conjugal_regime: {
+  conjugalRegime: {
     type: String,
     required: true,
   },
-  number_of_sons: {
+  numberOfSons: {
     type: String,
     required: true,
   },
-  housing_type: {
+  numberOfCargas: {
+    type: String,
+    require: true,
+  },
+  housingType: {
     type: String,
     required: true,
   },
-  level_of_study: {
+  educationLevel: {
     type: String,
   },
   university: {
@@ -63,13 +71,13 @@ const userKycSchema = new Schema({
   profession: {
     type: String,
   },
-  particular_address: {
+  particularAddress: {
     type: {
-      street_name: {
+      street: {
         type: String,
         require: true,
       },
-      street_no: {
+      number: {
         type: String,
         require: true,
       },
@@ -94,6 +102,20 @@ const userKycSchema = new Schema({
         require: true,
       },
     },
+    required: true,
+  },
+  documents: {
+    type: [
+      {
+        name: {
+          type: String,
+          required: true,
+        },
+        link: {
+          type: String,
+        },
+      },
+    ],
     required: true,
   },
 });
