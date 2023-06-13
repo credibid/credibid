@@ -10,4 +10,5 @@ module.exports = {
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   SESSION_SECRET: process.env.SESSION_SECRET,
   FRONTEND_CLIENT: process.env.FRONTEND_CLIENT,
+  JWT_KEY: process.env.JWT_KEY,
 };
