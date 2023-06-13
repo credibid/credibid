@@ -1,5 +1,5 @@
 const users = require('../models/user.model');
-const userKycs = require('../models/userKYC.model');
+const customerKycs = require('../models/customerKYC.model');
 const { decodeJWT, getPermanentAuthToken } = require('../utils/authentication');
 const { encryptPassword, checkPassword } = require('../utils/password');
 
@@ -49,8 +49,11 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ error: 'Invalid Login' });
 
     const token = getPermanentAuthToken(currentUser._id);
+    const { role, status } = currentUser;
 
-    return res.status(200).json({ token, id: currentUser._id, email_address });
+    return res
+      .status(200)
+      .json({ token, id: currentUser._id, email_address, role, status });
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
@@ -174,7 +177,7 @@ const createKyc = async (req, res) => {
       region,
     };
 
-    const currentKyc = await userKycs.create({
+    const currentKyc = await customerKycs.create({
       userId,
       firstName,
       lastName,
