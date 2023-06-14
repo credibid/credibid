@@ -15,7 +15,8 @@ const userSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'user', 'bank'],
+    enum: ['admin', 'user', 'bank', 'undefined'],
+    default: 'undefined',
   },
   sub: {
     type: String,
@@ -25,6 +26,11 @@ const userSchema = new Schema({
   },
   picture: {
     type: String,
+  },
+  status: {
+    type: String,
+    enum: ['active', 'pending'],
+    default: 'pending',
   },
 });
 
