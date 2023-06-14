@@ -50,44 +50,13 @@ const UploaderCard = ({title}) => {
               alt={'Avatar Alt'}
               mb={4}
               pos={'relative'}
-            //   _after={{
-            //     content: '""',
-            //     w: 4,
-            //     h: 4,
-            //     bg: 'green.300',
-            //     border: '2px solid white',
-            //     rounded: 'full',
-            //     pos: 'absolute',
-            //     bottom: 0,
-            //     right: 3,
-            //   }}
             />
             <Heading fontSize={'2xl'} fontFamily={'body'}>
               {title}
             </Heading>
-            {/* <Text
-              textAlign={'center'}
-              color={useColorModeValue('gray.700', 'gray.400')}
-              px={3}>
-              Actress, musician, songwriter and artist. PM for work inquires or
-              me in your posts
-            </Text> */}
-    
-            
-    
+
             <Stack mt={8} direction={'row'} spacing={4}>
-              {/* <Button
-                flex={1}
-                fontSize={'sm'}
-                rounded={'full'}
-                _focus={{
-                  bg: 'gray.200',
-                }}>
-                Message
-              </Button> */}
-              {/* <FormLabel className='upload_label' ms='4px' fontSize='sm' fontWeight='normal'>{ docFile ? docFile.name : 'Click here to upload'}</FormLabel> */}
             <Input className='upload_field' type='file' name='up_doc' id='up_doc' onChange={handleFileUpload}/>
-            {/* <Input type='file' name='emp_image' onChange={handleImage} /> */}
               <Button
                 flex={1}
                 fontSize={'sm'}
