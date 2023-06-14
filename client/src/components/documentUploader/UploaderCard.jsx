@@ -85,7 +85,7 @@ const UploaderCard = ({title}) => {
                 }}>
                 Message
               </Button> */}
-              <FormLabel for={'up_doc'} className='upload_label' ms='4px' fontSize='sm' fontWeight='normal'>{ docFile ? docFile.name : 'Click here to upload'}</FormLabel>
+              {/* <FormLabel className='upload_label' ms='4px' fontSize='sm' fontWeight='normal'>{ docFile ? docFile.name : 'Click here to upload'}</FormLabel> */}
             <Input className='upload_field' type='file' name='up_doc' id='up_doc' onChange={handleFileUpload}/>
             {/* <Input type='file' name='emp_image' onChange={handleImage} /> */}
               <Button
