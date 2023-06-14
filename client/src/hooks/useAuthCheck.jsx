@@ -19,6 +19,7 @@ export default function useAuthCheck() {
             token: auth.token,
             email_address: auth.email_address,
             role: auth.role,
+            status: auth.status,
           })
         );
       }
