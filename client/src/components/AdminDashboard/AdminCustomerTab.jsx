@@ -9,21 +9,28 @@ import {
   Th,
   Thead,
   Tr,
+  HStack,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  Stack,
-  HStack,
+  useToast,
 } from '@chakra-ui/react';
-import { useGetCustomersQuery } from '../../features/bank/bankApi';
-import CustomerDetails from '../BankDashboard/CustomerDetails';
-import { useAllCustomersQuery } from '../../features/admin/admin';
+import {
+  useAllCustomersQuery,
+  useDeleteCustomerMutation,
+} from '../../features/admin/admin';
 import { DeleteIcon, ViewIcon } from '@chakra-ui/icons';
+import CustomerDetails from '../BankDashboard/CustomerDetails';
 
 const AdminCustomerTab = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -31,19 +38,40 @@ const AdminCustomerTab = () => {
   const [data, setData] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [customer, setCustomer] = useState({});
-
+  const [deleteCustomerId, setDeleteCustomerId] = useState(null);
+  const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] =
+    useState(false);
+  const cancelRef = React.useRef();
+  const toast = useToast();
   const {
     data: customers,
     isLoading,
     isError,
     error,
     isSuccess,
+    refetch,
   } = useAllCustomersQuery();
+
+  const [deleteCustomer, { isSuccess: isDeleteSuccess }] =
+    useDeleteCustomerMutation();
+
   useEffect(() => {
     if (isSuccess) {
       setData(customers);
     }
-  }, [isSuccess]);
+  }, [customers, isSuccess]);
+
+  useEffect(() => {
+    if (isDeleteSuccess) {
+      toast({
+        title: 'Customer deleted successfully',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+      refetch();
+    }
+  }, [isDeleteSuccess]);
 
   const itemsPerPage = 5;
 
@@ -70,8 +98,8 @@ const AdminCustomerTab = () => {
     const endIndex = startIndex + itemsPerPage;
     return filteredData.slice(startIndex, endIndex);
   };
+
   const handleViewDetails = (customer) => {
-    console.log(customer);
     setCustomer(customer);
     onOpen();
   };
@@ -88,6 +116,23 @@ const AdminCustomerTab = () => {
       element.style.display = 'none';
     });
   };
+
+  const handleDelete = (id) => {
+    console.log(id);
+    setDeleteCustomerId(id);
+    setIsDeleteConfirmationOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    deleteCustomer(deleteCustomerId);
+    console.log('Deleting customer with ID:', deleteCustomerId);
+    setIsDeleteConfirmationOpen(false);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteConfirmationOpen(false);
+  };
+
   return (
     <Box display={'flex'} flexDir={'column'}>
       <Box alignSelf={'flex-end'}>
@@ -129,7 +174,7 @@ const AdminCustomerTab = () => {
                   <Button
                     colorScheme='red'
                     size='sm'
-                    onClick={() => handleViewDetails(contact)}>
+                    onClick={() => handleDelete(contact._id)}>
                     <DeleteIcon />
                   </Button>
                 </HStack>
@@ -153,6 +198,32 @@ const AdminCustomerTab = () => {
           ))}
         </Box>
       )}
+
+      <AlertDialog
+        isOpen={isDeleteConfirmationOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={handleCancelDelete}>
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+              Delete Customer
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={handleCancelDelete}>
+                Cancel
+              </Button>
+              <Button colorScheme='red' onClick={handleConfirmDelete} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
 
       <Modal isOpen={isOpen} onClose={onClose} size={'4xl'}>
         <ModalOverlay />
