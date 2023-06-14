@@ -12,6 +12,8 @@ import QuickLink from './pages/QuickLink';
 import UserKYC from './pages/UserKYC';
 import UserLogin from './pages/UserLogin';
 import UserSignup from './pages/UserSignup';
+import LandingPage from './pages/LandingPage';
+import DocumentUploader from './components/documentUploader/DocumentUploader';
 
 const App = () => {
   const authChecked = useAuthCheck();
@@ -63,6 +65,8 @@ const App = () => {
             </BankPrivateRoute>
           }
         />
+        <Route exact path='/home' element={<LandingPage />} />
+        <Route exact path='/upload_documents' element={<DocumentUploader />} />
       </Routes>
     </BrowserRouter>
   );
