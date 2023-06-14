@@ -27,15 +27,19 @@ export const authApi = apiSlice.injectEndpoints({
               token: result.data.token,
               email_address: result.data.email_address,
               role: result.data.role,
+              status: result.data.status,
+              id: result.data.id,
             }),
             { expires: 1 } // 1 day
           );
 
           dispatch(
             userLoggedIn({
-              accessToken: result.data.accessToken,
+              token: result.data.token,
               email_address: result.data.email_address,
               role: result.data.role,
+              status: result.data.status,
+              id: result.data.id,
             })
           );
         } catch (err) {

@@ -1,34 +1,63 @@
 import { Box, Select, VStack, Text, Button } from '@chakra-ui/react';
-import React from 'react';
+import Cookies from 'js-cookie';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { userLoggedIn } from '../../features/auth/authSlice';
 import { useSetRoleMutation } from '../../features/user/userApi';
 
 const SetRole = () => {
-  const [setRole, { data, loading, error, isSuccess }] = useSetRoleMutation();
-
+  const [updateRole, { data, loading, error, isSuccess }] =
+    useSetRoleMutation();
+  const [role, setRole] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSetRole = (e) => {
     e.preventDefault();
-    console.log(e.target[0]);
-    const role = e.target[0].value;
-    setRole({ role });
+    setRole(e.target[0].value);
+    updateRole({ role: e.target[0].value });
   };
   useEffect(() => {
     if (isSuccess) {
-      navigate('/');
+      const data = JSON.parse(Cookies.get('auth'));
+      Cookies.set(
+        'auth',
+        JSON.stringify({
+          ...data,
+          role: role,
+        }),
+        { expires: 1 } // 1 day
+      );
+
+      dispatch(
+        userLoggedIn({
+          ...data,
+          role: role,
+        })
+      );
+    }
+
+    if (isSuccess && role === 'user') {
+      navigate('/user-kyc');
+    }
+    if (isSuccess && role === 'bank') {
+      navigate('/bank-form');
     }
   }, [isSuccess]);
 
   return (
-    <VStack h={'100vh'} justify='center'>
+    <VStack
+      h={'100vh'}
+      justify='center'
+      bgGradient='linear(to-l, blue.50, blue.100)'>
       <Box
         p={20}
-        shadow='2xl'
+        shadow='xl'
         rounded={'2xl'}
         border={'4px solid'}
-        borderColor={'purple.100'}
-        bgGradient='linear(to-r, rgba(0, 0, 255, 0.3), rgba(0, 0, 255, 0.2))'>
+        borderColor={'blue.100'}
+        bgGradient='linear(90deg, blue.50, white)'>
         <Text fontSize='2xl' fontWeight='bold' mb={5} align='center'>
           Register as
         </Text>
@@ -37,12 +66,7 @@ const SetRole = () => {
             <option value='user'>Customer</option>
             <option value='bank'>Bank Manager</option>
           </Select>
-          <Button
-            w={'100%'}
-            mt={2}
-            bgColor={'purple.600'}
-            color='white'
-            type='submit'>
+          <Button w={'100%'} mt={5} colorScheme='blue' type='submit'>
             Set Role
           </Button>
         </form>
