@@ -14,6 +14,10 @@ import UserLogin from './pages/UserLogin';
 import UserSignup from './pages/UserSignup';
 import LandingPage from './pages/LandingPage';
 import DocumentUploader from './components/documentUploader/DocumentUploader';
+import CustomerPending from './pages/CustomerPending';
+import AdminPrivateRoute from './components/common/AdminPrivateRoute';
+import AdminDashboard from './pages/AdminDashboard';
+import Unauthorised from './components/common/Unauthorised';
 
 const App = () => {
   const authChecked = useAuthCheck();
@@ -24,7 +28,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<QuickLink />} />
+        <Route exact path='/' element={<LandingPage />} />
         <Route exact path='/login' element={<UserLogin />} />
         <Route exact path='/setrole' element={<SetRole />} />
         <Route exact path='/signup' element={<UserSignup />} />
@@ -35,6 +39,15 @@ const App = () => {
           element={
             <UserPrivateRoute>
               <UserKYC />
+            </UserPrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path='/kyc-submitted'
+          element={
+            <UserPrivateRoute>
+              <CustomerPending />
             </UserPrivateRoute>
           }
         />
@@ -65,8 +78,17 @@ const App = () => {
             </BankPrivateRoute>
           }
         />
-        <Route exact path='/home' element={<LandingPage />} />
+        <Route
+          exact
+          path='/admin-dashboard'
+          element={
+            <AdminPrivateRoute>
+              <AdminDashboard />
+            </AdminPrivateRoute>
+          }
+        />
         <Route exact path='/upload_documents' element={<DocumentUploader />} />
+        <Route exact path='/unauthorised' element={<Unauthorised />} />
       </Routes>
     </BrowserRouter>
   );

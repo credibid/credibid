@@ -1,7 +1,7 @@
 import { Box, Select, VStack, Text, Button } from '@chakra-ui/react';
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userLoggedIn } from '../../features/auth/authSlice';
 import { useSetRoleMutation } from '../../features/user/userApi';
@@ -12,6 +12,19 @@ const SetRole = () => {
   const [role, setRole] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { role: userRole } = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (userRole === 'user') {
+      navigate('/user-kyc');
+    }
+    if (userRole === 'bank') {
+      navigate('/bank-form');
+    }
+    if (userRole === 'admin') {
+      navigate('/admin-dashboard');
+    }
+  }, [userRole]);
 
   const handleSetRole = (e) => {
     e.preventDefault();
