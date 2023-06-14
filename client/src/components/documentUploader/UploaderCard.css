@@ -9,3 +9,29 @@
 /* .upload_field{
     display: none;
 } */
+
+/* .upload_field{
+    font-size: 14px;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px black;
+    width: 350px;
+    outline: none;
+} */
+
+/* .upload_field{
+    max-width: 10vw;
+} */
+
+::-webkit-file-upload-button{
+    color: white;
+    background: #3182ce;
+    padding: 6px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 1px 0 1px 1px #3182ce;
+    outline: none;
+}
+::-webkit-file-upload-button:hover{
+    background: #57a2e9;
+}
