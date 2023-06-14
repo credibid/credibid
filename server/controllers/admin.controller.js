@@ -15,7 +15,7 @@ const getAllCustomers = async (req, res) => {
 
 const getAllBanks = async (req, res) => {
   try {
-    const allBanks = await banks.find({});
+    const allBanks = await banks.find({}).populate('userId');
     return res.status(200).json(allBanks);
   } catch (error) {
     console.log(error);

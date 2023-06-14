@@ -5,7 +5,6 @@ import Layout from '../components/common/Layout';
 const AdminDashboard = () => {
   return (
     <Layout>
-      <h1>Admin Dashboard</h1>
       <BankAccountTab />
     </Layout>
   );
