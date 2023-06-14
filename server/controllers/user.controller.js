@@ -2,6 +2,7 @@ const users = require('../models/user.model');
 const customerKycs = require('../models/customerKYC.model');
 const { decodeJWT, getPermanentAuthToken } = require('../utils/authentication');
 const { encryptPassword, checkPassword } = require('../utils/password');
+const { extractedInfo } = require('../utils/extractedInfo');
 
 const createUser = async (req, res) => {
   try {
@@ -58,15 +59,6 @@ const loginUser = async (req, res) => {
     console.log(error);
     return res.status(500).json(error);
   }
-};
-
-const extractedInfo = (usr) => {
-  const { _id, email_address } = usr;
-
-  return {
-    _id,
-    email_address,
-  };
 };
 
 const getUserById = async (req, res) => {
@@ -142,6 +134,13 @@ const createKyc = async (req, res) => {
   try {
     const userId = req.authUser;
 
+    const existingKyc = await customerKycs.findOne({ userId });
+
+    if (existingKyc)
+      return res.status(200).json({
+        info: 'KYC already exists. Contact admin to delete the current one',
+      });
+
     const {
       firstName,
       lastName,
@@ -204,6 +203,20 @@ const createKyc = async (req, res) => {
   }
 };
 
+const getCustomerKyc = async (req, res) => {
+  try {
+    const userId = req.authUser;
+    console.log('userId', userId);
+    const currentCustomer = await customerKycs.findOne({ userId });
+    if (!currentCustomer) return res.status(200).json({ info: 'No KYC found' });
+    return res.status(200).json(currentCustomer);
+    // return res.status(200).json('ok');
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 const setUserRole = async (req, res) => {
   try {
     const userId = req.authUser;
@@ -216,7 +229,7 @@ const setUserRole = async (req, res) => {
     const currentUser = await users.findById(userId);
     currentUser.role = role;
     await currentUser.save();
-    return res.status(200).json(currentUser);
+    return res.status(200).json(extractedInfo(currentUser));
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'Internal server error' });
@@ -231,4 +244,5 @@ module.exports = {
   thirdPartyLogin,
   createKyc,
   setUserRole,
+  getCustomerKyc,
 };

@@ -44,4 +44,16 @@ const getAllCustomers = async (req, res) => {
   }
 };
 
-module.exports = { createBank, getBankByToken, getAllCustomers };
+const getBankData = async (req, res) => {
+  try {
+    const userId = req.authUser;
+    const currentBank = await banks.findOne({ userId });
+    if (!currentBank) return res.status(200).json({ info: 'No bank found' });
+    return res.status(200).json(currentBank);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+module.exports = { createBank, getBankByToken, getAllCustomers, getBankData };
