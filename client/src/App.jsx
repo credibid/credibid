@@ -1,9 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import BankPrivateRoute from './components/common/BankPrivateRoute';
 import SetRole from './components/common/SetRole';
 import UserPrivateRoute from './components/common/UserPrivateRoute';
 import useAuthCheck from './hooks/useAuthCheck';
 import useRoleCheck from './hooks/useRoleCheck';
+import BankForm from './pages/BankForm';
 import QuickLink from './pages/QuickLink';
 import UserKYC from './pages/UserKYC';
 import UserLogin from './pages/UserLogin';
@@ -25,11 +27,20 @@ const App = () => {
 
         <Route
           exact
-          path='/kyc'
+          path='/user-kyc'
           element={
             <UserPrivateRoute>
               <UserKYC />
             </UserPrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path='/bank-form'
+          element={
+            <BankPrivateRoute>
+              <BankForm />
+            </BankPrivateRoute>
           }
         />
       </Routes>

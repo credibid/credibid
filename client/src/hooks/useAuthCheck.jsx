@@ -11,7 +11,7 @@ export default function useAuthCheck() {
     const cookieAuth = Cookies.get('auth');
     if (cookieAuth) {
       const auth = JSON.parse(cookieAuth);
-      console.log(auth);
+
       if (auth?.token) {
         // dispatch userLoggedIn action
         dispatch(
@@ -20,6 +20,7 @@ export default function useAuthCheck() {
             email_address: auth.email_address,
             role: auth.role,
             status: auth.status,
+            id: auth.id,
           })
         );
       }

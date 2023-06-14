@@ -1,22 +1,48 @@
 import { Box, Select, VStack, Text, Button } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import Cookies from 'js-cookie';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { userLoggedIn } from '../../features/auth/authSlice';
 import { useSetRoleMutation } from '../../features/user/userApi';
 
 const SetRole = () => {
-  const [setRole, { data, loading, error, isSuccess }] = useSetRoleMutation();
-
+  const [updateRole, { data, loading, error, isSuccess }] =
+    useSetRoleMutation();
+  const [role, setRole] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSetRole = (e) => {
     e.preventDefault();
-    console.log(e.target[0]);
-    const role = e.target[0].value;
-    setRole({ role });
+    setRole(e.target[0].value);
+    updateRole({ role: e.target[0].value });
   };
   useEffect(() => {
     if (isSuccess) {
-      navigate('/');
+      const data = JSON.parse(Cookies.get('auth'));
+      Cookies.set(
+        'auth',
+        JSON.stringify({
+          ...data,
+          role: role,
+        }),
+        { expires: 1 } // 1 day
+      );
+
+      dispatch(
+        userLoggedIn({
+          ...data,
+          role: role,
+        })
+      );
+    }
+
+    if (isSuccess && role === 'user') {
+      navigate('/user-kyc');
+    }
+    if (isSuccess && role === 'bank') {
+      navigate('/bank-form');
     }
   }, [isSuccess]);
 
