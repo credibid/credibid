@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import bankSvg from '../assets/bank.svg';
-import { useCreateBankMutation } from '../features/bank/userApi';
+import { useCreateBankMutation } from '../features/bank/bankApi';
 const BankForm = () => {
   const [bankName, setBankName] = useState('');
   const [routingNumber, setRoutingNumber] = useState('');
