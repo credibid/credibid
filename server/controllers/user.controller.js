@@ -121,9 +121,13 @@ const thirdPartyLogin = async (req, res) => {
 
     token = getPermanentAuthToken(thirdPartyUser._id);
 
-    return res
-      .status(200)
-      .json({ token, id: thirdPartyUser._id, email_address: email });
+    return res.status(200).json({
+      token,
+      id: thirdPartyUser._id,
+      email_address: email,
+      role: thirdPartyUser.role,
+      status: thirdPartyUser.status,
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'Internal server error' });
@@ -208,7 +212,8 @@ const getCustomerKyc = async (req, res) => {
     const userId = req.authUser;
     console.log('userId', userId);
     const currentCustomer = await customerKycs.findOne({ userId });
-    if (!currentCustomer) return res.status(200).json({ info: 'No KYC found' });
+    if (!currentCustomer)
+      return res.status(400).json({ error: 'No KYC found' });
     return res.status(200).json(currentCustomer);
     // return res.status(200).json('ok');
   } catch (error) {

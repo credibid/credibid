@@ -22,7 +22,14 @@ export const bankApi = apiSlice.injectEndpoints({
         method: 'GET',
       }),
     }),
+    bankData: builder.query({
+      query: () => ({
+        url: `/bank/bankdata`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useCreateBankMutation, useGetCustomersQuery } = bankApi;
+export const { useCreateBankMutation, useGetCustomersQuery, useBankDataQuery } =
+  bankApi;

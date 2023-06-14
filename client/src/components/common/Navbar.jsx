@@ -15,6 +15,7 @@ import {
   useBreakpointValue,
   useDisclosure,
   useColorMode,
+  Image,
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -25,14 +26,27 @@ import {
   SunIcon,
 } from '@chakra-ui/icons';
 
+import logo from '../../assets/logo.png';
+import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { userLoggedOut } from '../../features/auth/authSlice';
+import { useNavigate } from 'react-router-dom';
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Cookies.remove('auth');
+    dispatch(userLoggedOut());
+    navigate('/login');
+  };
 
   return (
     <Box>
       <Flex
-        bg={useColorModeValue('white', 'gray.800')}
+        bg={useColorModeValue('blue.900', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
         minH={'60px'}
         py={{ base: 2 }}
@@ -55,12 +69,19 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
+          {/* <Text
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}>
             Credibid
-          </Text>
+          </Text> */}
+          <Image
+            src={logo}
+            alt='Credibid'
+            width={150}
+            // height={60}
+            objectFit='contain'
+          />
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
@@ -80,13 +101,14 @@ export default function Navbar() {
             display={{ base: 'inline-flex', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
+            // color={'white'}
+            // bg={'pink.400'}
             href={'#'}
             _hover={{
-              bg: 'pink.300',
-            }}>
-            Logout{' '}
+              bg: 'blue.300',
+            }}
+            onClick={handleLogout}>
+            Logout
           </Button>
         </Stack>
       </Flex>

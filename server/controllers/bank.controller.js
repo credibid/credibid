@@ -48,7 +48,7 @@ const getBankData = async (req, res) => {
   try {
     const userId = req.authUser;
     const currentBank = await banks.findOne({ userId });
-    if (!currentBank) return res.status(200).json({ info: 'No bank found' });
+    if (!currentBank) return res.status(412).json({ info: 'No bank found' });
     return res.status(200).json(currentBank);
   } catch (error) {
     console.log(error);

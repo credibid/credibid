@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import pendingSvg from '../assets/pending.svg';
 import Layout from '../components/common/Layout';
 
-const BankPending = () => {
+const CustomerPending = () => {
   const navigate = useNavigate();
-  const { status } = useSelector((state) => state?.auth) || {};
-  useEffect(() => {
-    if (status === 'active') navigate('/bank-dashboard');
-  }, [status]);
+  // const { status } = useSelector((state) => state?.auth) || {};
+  // useEffect(() => {
+  //   if (status === 'active') navigate('/bank-dashboard');
+  // }, [status]);
 
   return (
     <Layout>
@@ -24,12 +24,12 @@ const BankPending = () => {
         w={'100vw'}>
         <Image src={pendingSvg} alt='login' width={'20vw'} />
         <Text fontSize='3xl' fontWeight='bold' mb={5}>
-          Your bank needs to be verified.
-          <br /> Please wait for the confirmation!
+          KYC Form Submitted.
+          <br /> We will get back to you soon!
         </Text>
       </VStack>
     </Layout>
   );
 };
 
-export default BankPending;
+export default CustomerPending;

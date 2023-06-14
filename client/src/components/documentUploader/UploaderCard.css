@@ -1,21 +1,23 @@
 .upload_label{
-    color: #3182CE;
+    /* color: #3182CE;
     border: 2px solid #3182CE;
     border-radius: 20px;
     display: inline-block;
     padding: 6px 12px;
-    cursor: pointer;
+    cursor: pointer; */
 }
 
 ::-webkit-file-upload-button{
-    color: white;
-    background: #3182ce;
+    width: 100%;
+    color: #3182ce;
+    background: #ffffff91;
     padding: 6px;
-    border: none;
+    border: 2px dashed #3182ce;
     border-radius: 50px;
-    box-shadow: 1px 0 1px 1px #3182ce;
+    text-transform: uppercase;
     outline: none;
+    cursor: pointer;
 }
 ::-webkit-file-upload-button:hover{
-    background: #57a2e9;
+    background: #57a2e970;
 }

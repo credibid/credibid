@@ -63,10 +63,39 @@ export const authApi = apiSlice.injectEndpoints({
     }),
     thirdPartyLogin: builder.mutation({
       query: (body) => ({
-        url: '/auth/thirdpartylogin',
+        url: '/user/thirdpartylogin',
         method: 'POST',
         body,
       }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        try {
+          const result = await queryFulfilled;
+          console.log('result', result);
+          Cookies.set(
+            'auth',
+            JSON.stringify({
+              token: result.data.token,
+              email_address: result.data.email_address,
+              role: result.data.role,
+              status: result.data.status,
+              id: result.data.id,
+            }),
+            { expires: 1 } // 1 day
+          );
+
+          dispatch(
+            userLoggedIn({
+              token: result.data.token,
+              email_address: result.data.email_address,
+              role: result.data.role,
+              status: result.data.status,
+              id: result.data.id,
+            })
+          );
+        } catch (err) {
+          // do nothing
+        }
+      },
     }),
   }),
 });

@@ -11,8 +11,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import loginSvg from '../assets/login.svg';
-import { FcGoogle } from 'react-icons/fc';
-import MetaIcon from '../components/customIcons/MetaIcon';
+
 import {
   useLoginMutation,
   useThirdPartyLoginMutation,
@@ -50,15 +49,18 @@ const UserLogin = () => {
       isSuccess: thirdPartySuccess,
     },
   ] = useThirdPartyLoginMutation();
-  const handleGoogleLogin = () => {
-    window.open(`${link}/auth/google`, '_self');
-  };
 
   useEffect(() => {
     if (isSuccess) {
-      navigate('/');
+      navigate('/setrole');
     }
   }, [isSuccess]);
+  useEffect(() => {
+    if (thirdPartySuccess) {
+      navigate('/setrole');
+    }
+  }, [thirdPartySuccess]);
+
   return (
     <HStack h={'100vh'}>
       <VStack
@@ -100,7 +102,18 @@ const UserLogin = () => {
               <Button type='submit' colorScheme='blue' width={'full'}>
                 Sign In
               </Button>
-              <Button
+              <Text>
+                Don't have an account?{' '}
+                <Text
+                  as='span'
+                  color='blue.500'
+                  fontWeight='bold'
+                  cursor='pointer'
+                  onClick={() => navigate('/signup')}>
+                  Sign Up
+                </Text>
+              </Text>
+              {/* <Button
                 leftIcon={<FcGoogle size={20} />}
                 colorScheme='gray'
                 width={'full'}
@@ -113,22 +126,18 @@ const UserLogin = () => {
                 colorScheme='gray'
                 width={'full'}>
                 Sign in with Meta
-              </Button>
-
+              </Button> */}
+              <Text fontSize='md' fontWeight='bold'>
+                Or
+              </Text>
               <GoogleOAuthProvider clientId='211149816915-592u5vukc6nrfk5bk0vphpimu6cmvtf0.apps.googleusercontent.com'>
                 <GoogleLogin
                   size='large'
                   theme='outline'
-                  useOneTap
+                  // useOneTap
                   onSuccess={(credentialResponse) => {
                     const token = credentialResponse.credential;
-                    // const decode = jwt_decode(token);
-                    // const user = {
-                    //   name: decode.given_name,
-                    //   email: decode.email,
-                    //   role: 'hr',
-                    //   githubUsername: 'hr-dummy-github',
-                    // };
+
                     thirdPartyLogin({ token });
                   }}
                   onError={() => {

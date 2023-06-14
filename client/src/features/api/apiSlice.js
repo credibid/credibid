@@ -7,7 +7,6 @@ export const apiSlice = createApi({
     baseUrl: import.meta.env.VITE_SERVER_URL,
     prepareHeaders: (headers, { getState, endpoint }) => {
       const token = JSON.parse(Cookies.get('auth') || null)?.token;
-      console.log('api', token);
       if (token) {
         headers.set('token', `${token}`);
       }
