@@ -27,14 +27,17 @@ const DocumentUploader = ({ handleNextStep, setParentObject }) => {
     }));
   };
   const titles = [
-    'Ultimas 3 liquidacions de sueldo',
-    'Declaracion impuestos 2023',
-    'Ultimas 12 cotizaciones AFP',
-    'Cartola o pantallazo del saldo de inversiones',
-    'Certificado Matrimonio',
-    'Certificado antecedentes comerciales',
-    'Promesa de compra venta',
-    'Ultimas 3 liquidacions sueldo',
+    'Last 3 salary statements',
+    'Tax return (present year)',
+    'Last 12 AFP quotes',
+    'Copy of identity card',
+    'Cartola or screenshot of the investment balance',
+    'Criminal record certificate',
+    'Promise of sale',
+    "Accredit down payment in the client's name",
+    "Payment of the final property installments",
+    "Incase of having previous quotes",
+    "Additional information if requested"
   ];
   return (
     <Box>
