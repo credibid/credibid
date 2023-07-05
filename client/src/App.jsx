@@ -1,13 +1,14 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SetRole from './components/common/SetRole';
-import UserPrivateRoute from './components/common/UserPrivateRoute';
-import useAuthCheck from './hooks/useAuthCheck';
-import useRoleCheck from './hooks/useRoleCheck';
-import QuickLink from './pages/QuickLink';
-import UserKYC from './pages/UserKYC';
-import UserLogin from './pages/UserLogin';
-import UserSignup from './pages/UserSignup';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SetRole from "./components/common/SetRole";
+import UserPrivateRoute from "./components/common/UserPrivateRoute";
+import useAuthCheck from "./hooks/useAuthCheck";
+import useRoleCheck from "./hooks/useRoleCheck";
+import QuickLink from "./pages/QuickLink";
+import UserKYC from "./pages/UserKYC";
+import UserLogin from "./pages/UserLogin";
+import UserSignup from "./pages/UserSignup";
+import EmploymentBg from "./components/UserKYC2/EmploymentBG";
 
 const App = () => {
   const authChecked = useAuthCheck();
@@ -18,18 +19,28 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<QuickLink />} />
-        <Route exact path='/login' element={<UserLogin />} />
-        <Route exact path='/setrole' element={<SetRole />} />
-        <Route exact path='/signup' element={<UserSignup />} />
+        <Route exact path="/" element={<QuickLink />} />
+        <Route exact path="/login" element={<UserLogin />} />
+        <Route exact path="/setrole" element={<SetRole />} />
+        <Route exact path="/signup" element={<UserSignup />} />
 
         <Route
           exact
-          path='/kyc'
+          path="/kyc"
           element={
-            <UserPrivateRoute>
-              <UserKYC />
-            </UserPrivateRoute>
+            // <UserPrivateRoute>
+            <UserKYC />
+            // </UserPrivateRoute>
+          }
+        />
+
+        <Route
+          exact
+          path="/kyc2"
+          element={
+            // <UserPrivateRoute>
+            <EmploymentBg />
+            // </UserPrivateRoute>
           }
         />
       </Routes>
