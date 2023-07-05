@@ -31,9 +31,11 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
         employmentBackground.startOfContractDate.trim() !== "" &&
         employmentBackground.monthlyIncome.trim() !== ""
       )
-        // handleNextStep();
-        // TODO: setParentObject
-        console.log("Employment Background: ", employmentBackground);
+        setParentObject((prevObject) => ({
+          ...prevObject,
+          employmentBackground,
+        }));
+      handleNextStep();
     } else if (employmentBackground.dependent === "dependent") {
       if (
         employmentBackground.emloyerNumber.trim() !== "" &&
@@ -43,9 +45,12 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
         employmentBackground.position.trim() !== "" &&
         employmentBackground.monthlyIncome.trim() !== ""
       )
-        // TODO: setParentObject
-        // handleNextStep();
-        console.log("Employment Background: ", employmentBackground);
+        setParentObject((prevObject) => ({
+          ...prevObject,
+          employmentBackground,
+        }));
+      handleNextStep();
+      // console.log("Employment Background: ", employmentBackground);
     } else {
       toast({
         title: "Error",
@@ -94,7 +99,9 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
                 placeholder="e.g. 1234567890"
               />
             </>
-          ) : null}
+          ) : (
+            false
+          )}
         </FormControl>
         <FormControl>
           {employmentBackground.dependent === "dependent" ? (
@@ -112,7 +119,9 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
                 placeholder="e.g. ABC123"
               />
             </>
-          ) : null}
+          ) : (
+            false
+          )}
         </FormControl>
         <FormControl>
           {employmentBackground.dependent === "dependent" ||

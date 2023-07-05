@@ -8,7 +8,7 @@ import QuickLink from "./pages/QuickLink";
 import UserKYC from "./pages/UserKYC";
 import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
-import EmploymentBg from "./components/UserKYC2/EmploymentBG";
+import MultiStep from "./components/UserKYC2/MultiStep";
 
 const App = () => {
   const authChecked = useAuthCheck();
@@ -39,7 +39,7 @@ const App = () => {
           path="/kyc2"
           element={
             // <UserPrivateRoute>
-            <EmploymentBg />
+            <MultiStep />
             // </UserPrivateRoute>
           }
         />
