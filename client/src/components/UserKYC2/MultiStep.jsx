@@ -18,6 +18,7 @@ import {
 import { FiCheckSquare } from "react-icons/fi";
 import { useCreatekycMutation } from "../../features/user/userApi";
 import EmploymentBg from "./EmploymentBG";
+import PrevEmployment from "./PrevEmployment";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -57,15 +58,15 @@ const MultiStepForm = () => {
         />
       ),
     },
-    // {
-    //   label: 'Step 2: Personal Info',
-    //   component: (
-    //     <PersonalInfo
-    //       handleNextStep={handleNextStep}
-    //       setParentObject={setParentObject}
-    //     />
-    //   ),
-    // },
+    {
+      label: "Step 2: Previous Employment",
+      component: (
+        <PrevEmployment
+          handleNextStep={handleNextStep}
+          setParentObject={setParentObject}
+        />
+      ),
+    },
     // {
     //   label: 'Step 3: Address Info',
     //   component: (
