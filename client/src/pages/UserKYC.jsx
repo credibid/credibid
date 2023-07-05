@@ -1,21 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  HStack,
-  Image,
-  Input,
-  Spinner,
-  Stack,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
-import loginSvg from '../assets/login.svg';
-import { FcGoogle } from 'react-icons/fc';
-import MetaIcon from '../components/customIcons/MetaIcon';
+import React, { useEffect } from 'react';
 import MultiStepForm from '../components/UserKYC/MultiStepForm';
 import Layout from '../components/common/Layout';
 import { useGetKycQuery } from '../features/user/userApi';
