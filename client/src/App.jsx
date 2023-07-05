@@ -18,6 +18,7 @@ import CustomerPending from './pages/CustomerPending';
 import AdminPrivateRoute from './components/common/AdminPrivateRoute';
 import AdminDashboard from './pages/AdminDashboard';
 import Unauthorised from './components/common/Unauthorised';
+import UserKYCThree from './pages/UserKYCThree';
 
 const App = () => {
   const authChecked = useAuthCheck();
@@ -32,6 +33,7 @@ const App = () => {
         <Route exact path='/login' element={<UserLogin />} />
         <Route exact path='/setrole' element={<SetRole />} />
         <Route exact path='/signup' element={<UserSignup />} />
+        <Route exact path='/user-kyc-3' element={<UserKYCThree />} />
 
         <Route
           exact
