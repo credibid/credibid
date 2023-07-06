@@ -9,19 +9,16 @@ const userKycSchema = new Schema({
   },
   firstName: {
     type: String,
-    required: true,
   },
   lastName: {
     type: String,
-    required: true,
   },
   celular: {
     type: String,
-    require: true,
   },
   gender: {
     type: String,
-    required: true,
+
     enum: [
       'male',
       'female',
@@ -37,31 +34,24 @@ const userKycSchema = new Schema({
   },
   dependants: {
     type: String,
-    required: true,
   },
   nationality: {
     type: String,
-    required: true,
   },
   civilStatus: {
     type: String,
-    required: true,
   },
   conjugalRegime: {
     type: String,
-    required: true,
   },
   numberOfSons: {
     type: String,
-    required: true,
   },
   numberOfCargas: {
     type: String,
-    require: true,
   },
   housingType: {
     type: String,
-    required: true,
   },
   educationLevel: {
     type: String,
@@ -76,48 +66,38 @@ const userKycSchema = new Schema({
     type: {
       street: {
         type: String,
-        require: true,
       },
       number: {
         type: String,
-        require: true,
       },
       house: {
         type: String,
-        require: true,
       },
       department: {
         type: String,
-        require: true,
       },
       community: {
         type: String,
-        require: true,
       },
       city: {
         type: String,
-        require: true,
       },
       region: {
         type: String,
-        require: true,
       },
     },
-    required: true,
   },
   documents: {
     type: [
       {
         name: {
           type: String,
-          required: true,
         },
         link: {
           type: String,
         },
       },
     ],
-    required: true,
   },
 });
 
