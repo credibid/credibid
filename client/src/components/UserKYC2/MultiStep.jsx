@@ -19,8 +19,12 @@ import { FiCheckSquare } from "react-icons/fi";
 import { useCreatekycMutation } from "../../features/user/userApi";
 import EmploymentBg from "./EmploymentBG";
 import PrevEmployment from "./PrevEmployment";
+import BankInfo from "./BankInfo";
+import PartnerData from "./PartnerData";
+import PartnerEmploymentBg from "./PartnerEmploymentBg";
+import PartnerAddress from "./PartnerAddress";
 
-const MultiStepForm = () => {
+const MultiStep = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState([]);
   const [parentObject, setParentObject] = useState({});
@@ -67,15 +71,22 @@ const MultiStepForm = () => {
         />
       ),
     },
-    // {
-    //   label: 'Step 3: Address Info',
-    //   component: (
-    //     <AddressInfo
-    //       handleNextStep={handleNextStep}
-    //       setParentObject={setParentObject}
-    //     />
-    //   ),
-    // },
+    {
+      label: "Step 3: Bank Reference",
+      component: <BankInfo />,
+    },
+    {
+      label: "Step 4: Partner Data",
+      component: <PartnerData />,
+    },
+    {
+      label: "Step 5: Partner Employment Background",
+      component: <PartnerEmploymentBg />,
+    },
+    {
+      label: "Step 6: Partner Address",
+      component: <PartnerAddress />,
+    },
   ];
 
   const handleFormSubmit = () => {
@@ -204,4 +215,4 @@ const MultiStepForm = () => {
   );
 };
 
-export default MultiStepForm;
+export default MultiStep;
