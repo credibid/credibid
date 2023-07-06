@@ -3,6 +3,7 @@ const customerKycs = require('../models/customerKYC.model');
 const { decodeJWT, getPermanentAuthToken } = require('../utils/authentication');
 const { encryptPassword, checkPassword } = require('../utils/password');
 const { extractedInfo } = require('../utils/extractedInfo');
+const AssetsKYC = require('../models/assetsKYC.model');
 
 const createUser = async (req, res) => {
   try {
@@ -241,6 +242,63 @@ const setUserRole = async (req, res) => {
   }
 };
 
+const assetsKYC = async (req, res) => {
+  try {
+    const userId = req.authUser;
+
+    const processedObject = processObject(req.body);
+
+    const myObject = new AssetsKYC({
+      ...processedObject,
+      userId: userId,
+    });
+
+    const savedObject = await myObject.save();
+    res.status(200).json({ savedObject });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+const processObject = (obj) => {
+  const processedObj = { ...obj };
+
+  processedObj.financialInvestment = convertNumberedPropertiesToArray(
+    processedObj.financialInvestment
+  );
+
+  processedObj.companyParticipations = convertNumberedPropertiesToArray(
+    processedObj.companyParticipations
+  );
+
+  processedObj.realEstateDetails = convertNumberedPropertiesToArray(
+    processedObj.realEstateDetails
+  );
+
+  processedObj.vehicleDetails = convertNumberedPropertiesToArray(
+    processedObj.vehicleDetails
+  );
+
+  processedObj.debtDetails = convertNumberedPropertiesToArray(
+    processedObj.debtDetails
+  );
+
+  return processedObj;
+};
+
+const convertNumberedPropertiesToArray = (obj) => {
+  const array = [];
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      const item = obj[key];
+      item.id = key;
+      array.push(item);
+    }
+  }
+  return array;
+};
+
 module.exports = {
   createUser,
   loginUser,
@@ -250,4 +308,5 @@ module.exports = {
   createKyc,
   setUserRole,
   getCustomerKyc,
+  assetsKYC,
 };
