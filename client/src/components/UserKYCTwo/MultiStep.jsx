@@ -121,9 +121,6 @@ const MultiStep = () => {
       duration: 3000,
       isClosable: true,
     });
-
-    console.log(parentObject);
-    // createKYC(parentObjectAsString);
   };
 
   return (
