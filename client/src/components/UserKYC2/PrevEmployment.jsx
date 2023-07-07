@@ -61,6 +61,7 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 emloyerNumber: e.target.value,
               })
             }
+            placeholder="e.g. E-12345"
           />
         </FormControl>
         <FormControl>
@@ -74,6 +75,7 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 companyName: e.target.value,
               })
             }
+            placeholder="e.g. ABC Company"
           />
         </FormControl>
         <FormControl>
@@ -87,6 +89,7 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 businessLine: e.target.value,
               })
             }
+            placeholder="e.g. Manufacturing"
           />
         </FormControl>
         <FormControl>
@@ -100,6 +103,7 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 economicActivity: e.target.value,
               })
             }
+            placeholder="e.g. Manufacturing"
           />
         </FormControl>
         <FormControl>
@@ -113,6 +117,7 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 startOfEmploymentDate: e.target.value,
               })
             }
+            placeholder="e.g. 12/12/2023"
           />
         </FormControl>
         <FormControl>
@@ -126,6 +131,7 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 endOfEmploymentDate: e.target.value,
               })
             }
+            placeholder="e.g. 12/12/2023"
           />
         </FormControl>
 

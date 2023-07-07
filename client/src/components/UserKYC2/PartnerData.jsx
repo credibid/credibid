@@ -39,7 +39,6 @@ const PartnerData = ({ handleNextStep, setParentObject }) => {
       partnerData.nacionality.trim() !== "" &&
       partnerData.levelOfStudies.trim() !== ""
     ) {
-      console.log("Partner Data: ", partnerData);
       setParentObject((prevObject) => ({
         ...prevObject,
         partnerData,

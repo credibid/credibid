@@ -50,8 +50,7 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
           ...prevObject,
           partnerEmploymentBg,
         }));
-      // handleNextStep();
-      console.log("PartnerEmploymentBg Background: ", partnerEmploymentBg);
+      handleNextStep();
     } else {
       toast({
         title: "Error",
