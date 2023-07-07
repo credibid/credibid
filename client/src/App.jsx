@@ -8,7 +8,7 @@ import QuickLink from "./pages/QuickLink";
 import UserKYC from "./pages/UserKYC";
 import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
-import MultiStep from "./components/UserKYC2/MultiStep";
+import MultiStep from "./components/UserKYCTwo/MultiStep";
 
 const App = () => {
   const authChecked = useAuthCheck();
