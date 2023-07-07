@@ -22,7 +22,6 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     if (
       previousEmployment.emloyerNumber.trim() !== "" &&
       previousEmployment.companyName.trim() !== "" &&
@@ -31,7 +30,11 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
       previousEmployment.startOfEmploymentDate.trim() !== "" &&
       previousEmployment.endOfEmploymentDate.trim() !== ""
     ) {
-      console.log("Previous Employment: ", previousEmployment);
+      setParentObject((prevObject) => ({
+        ...prevObject,
+        previousEmployment,
+      }));
+      handleNextStep();
     } else {
       toast({
         title: "Error",

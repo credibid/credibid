@@ -38,6 +38,7 @@ const MultiStep = () => {
       currentStep,
     ]);
     setCurrentStep((prevStep) => prevStep + 1);
+    console.log(parentObject);
   };
 
   const handleStepClick = (index) => {
@@ -51,6 +52,41 @@ const MultiStep = () => {
   const isStepCompleted = (stepIndex) => {
     return completedSteps.includes(stepIndex);
   };
+
+  const flattenProperties = (obj, prefix = "") => {
+    let flattened = {};
+
+    for (let key in obj) {
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        const nestedPrefix = prefix ? `${prefix}.${key}` : key;
+        const nestedFlattened = flattenProperties(obj[key], nestedPrefix);
+        flattened = { ...flattened, ...nestedFlattened };
+      } else {
+        const propertyKey = prefix ? `${prefix}.${key}` : key;
+        flattened[propertyKey] = obj[key];
+      }
+    }
+
+    return flattened;
+  };
+
+  const flattenedObject = flattenProperties(parentObject);
+  console.log(flattenedObject);
+
+  const sections = {};
+
+  // Group the properties by section
+  for (const [key, value] of Object.entries(flattenedObject)) {
+    const [section, property] = key.split(".");
+
+    if (!sections[section]) {
+      sections[section] = {};
+    }
+
+    sections[section][property] = value;
+  }
+
+  console.log(sections);
 
   const steps = [
     {
@@ -73,19 +109,39 @@ const MultiStep = () => {
     },
     {
       label: "Step 3: Bank Reference",
-      component: <BankInfo />,
+      component: (
+        <BankInfo
+          handleNextStep={handleNextStep}
+          setParentObject={setParentObject}
+        />
+      ),
     },
     {
       label: "Step 4: Partner Data",
-      component: <PartnerData />,
+      component: (
+        <PartnerData
+          handleNextStep={handleNextStep}
+          setParentObject={setParentObject}
+        />
+      ),
     },
     {
       label: "Step 5: Partner Employment Background",
-      component: <PartnerEmploymentBg />,
+      component: (
+        <PartnerEmploymentBg
+          handleNextStep={handleNextStep}
+          setParentObject={setParentObject}
+        />
+      ),
     },
     {
       label: "Step 6: Partner Address",
-      component: <PartnerAddress />,
+      component: (
+        <PartnerAddress
+          handleNextStep={handleNextStep}
+          setParentObject={setParentObject}
+        />
+      ),
     },
   ];
 
@@ -100,6 +156,9 @@ const MultiStep = () => {
       duration: 3000,
       isClosable: true,
     });
+
+    console.log(parentObject);
+    // createKYC(parentObjectAsString);
   };
 
   return (
@@ -188,27 +247,7 @@ const MultiStep = () => {
           >
             Preview
           </Text>
-          {Object.entries(parentObject).length > 0 && (
-            <Table variant="simple" textAlign={"left"}>
-              <Thead>
-                <Tr>
-                  <Th>Property</Th>
-                  <Th>Value</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {Object.entries(parentObject).map(([key, value]) => (
-                  <Tr key={key}>
-                    <Td>
-                      {key.charAt(0).toUpperCase() +
-                        key.slice(1).replace(/([A-Z])/g, " $1")}
-                    </Td>
-                    <Td>{value.charAt(0).toUpperCase() + value.slice(1)}</Td>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          )}
+          <PreviewTable data={parentObject} />
         </Box>
       </Stack>
     </HStack>
@@ -216,3 +255,37 @@ const MultiStep = () => {
 };
 
 export default MultiStep;
+
+function PreviewTable({ data }) {
+  return (
+    <Box p={4}>
+      <Table variant="simple" textAlign={"left"}>
+        <Thead>
+          <Tr>
+            <Th>Section</Th>
+            <Th>Property</Th>
+            <Th>Value</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {Object.entries(data).map(([section, properties]) => (
+            <>
+              <Tr key={section}>
+                <Td fontWeight="bold" textTransform="capitalize">
+                  {section}
+                </Td>
+              </Tr>
+              {Object.entries(properties).map(([property, value]) => (
+                <Tr key={property}>
+                  <Td></Td>
+                  <Td>{property}</Td>
+                  <Td>{String(value)}</Td>
+                </Tr>
+              ))}
+            </>
+          ))}
+        </Tbody>
+      </Table>
+    </Box>
+  );
+}

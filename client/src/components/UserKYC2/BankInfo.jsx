@@ -9,11 +9,11 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-const BankInfo = () => {
+const BankInfo = ({ handleNextStep, setParentObject }) => {
   const [bankReferences, setBankReferences] = useState({
     bankName: "",
     product: "",
-    N: "",
+    number: "",
   });
 
   const toast = useToast();
@@ -24,10 +24,15 @@ const BankInfo = () => {
     if (
       bankReferences.bankName.trim() !== "" &&
       bankReferences.product.trim() !== "" &&
-      bankReferences.N.trim() !== ""
+      bankReferences.number.trim() !== ""
     ) {
       console.log("Bank References: ", bankReferences);
       console.log(typeof bankReferences.N);
+      setParentObject((prevObject) => ({
+        ...prevObject,
+        bankReferences,
+      }));
+      handleNextStep();
     } else {
       toast({
         title: "Error",
@@ -54,6 +59,7 @@ const BankInfo = () => {
                 bankName: e.target.value,
               })
             }
+            placeholder="Bank Name"
           />
         </FormControl>
         <FormControl>
@@ -67,6 +73,7 @@ const BankInfo = () => {
                 product: e.target.value,
               })
             }
+            placeholder="Product"
           />
         </FormControl>
         <FormControl>
@@ -75,13 +82,14 @@ const BankInfo = () => {
           </FormLabel>
           <Input
             type="number"
-            value={bankReferences.N}
+            value={bankReferences.number}
             onChange={(e) =>
               setBankReferences({
                 ...bankReferences,
-                N: e.target.value,
+                number: e.target.value,
               })
             }
+            placeholder="number"
           />
         </FormControl>
         <Button colorScheme="blue" type="submit">

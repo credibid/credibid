@@ -50,7 +50,6 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
           employmentBackground,
         }));
       handleNextStep();
-      // console.log("Employment Background: ", employmentBackground);
     } else {
       toast({
         title: "Error",
@@ -66,7 +65,6 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
   return (
     <form onSubmit={onSubmit}>
       <Stack spacing={4}>
-        {/* Render on dependent type */}
         <FormControl>
           <FormLabel>Are you a dependent or independent?</FormLabel>
           <Select
