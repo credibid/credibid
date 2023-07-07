@@ -9,6 +9,7 @@ import UserKYC from "./pages/UserKYC";
 import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
 import MultiStep from "./components/UserKYCTwo/MultiStep";
+import UserKYCTwo from "./pages/UserKYCTwo";
 
 const App = () => {
   const authChecked = useAuthCheck();
@@ -39,7 +40,7 @@ const App = () => {
           path="/kyc-2"
           element={
             // <UserPrivateRoute>
-            <MultiStep />
+            <UserKYCTwo />
             // </UserPrivateRoute>
           }
         />
