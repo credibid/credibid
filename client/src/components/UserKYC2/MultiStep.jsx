@@ -220,72 +220,8 @@ const MultiStep = () => {
           )}
         </Box>
       </Stack>
-
-      <Stack
-        w={{ md: "30vw", base: "100vw" }}
-        top={0}
-        right={0}
-        mt={{ md: 4, base: 0 }}
-        mr={4}
-        px={{ md: 10, base: 2 }}
-        alignItems={"flex-start"}
-      >
-        <Box
-          p={4}
-          shadow={"lg"}
-          rounded={"xl"}
-          w={"full"}
-          minH={"90vh"}
-          textAlign="center"
-        >
-          <Text
-            fontSize="xl"
-            fontWeight="bold"
-            mb={4}
-            pb={2}
-            borderBottom={"2px solid lightgray"}
-          >
-            Preview
-          </Text>
-          <PreviewTable data={parentObject} />
-        </Box>
-      </Stack>
     </HStack>
   );
 };
 
 export default MultiStep;
-
-function PreviewTable({ data }) {
-  return (
-    <Box p={4}>
-      <Table variant="simple" textAlign={"left"}>
-        <Thead>
-          <Tr>
-            <Th>Section</Th>
-            <Th>Property</Th>
-            <Th>Value</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {Object.entries(data).map(([section, properties]) => (
-            <>
-              <Tr key={section}>
-                <Td fontWeight="bold" textTransform="capitalize">
-                  {section}
-                </Td>
-              </Tr>
-              {Object.entries(properties).map(([property, value]) => (
-                <Tr key={property}>
-                  <Td></Td>
-                  <Td>{property}</Td>
-                  <Td>{String(value)}</Td>
-                </Tr>
-              ))}
-            </>
-          ))}
-        </Tbody>
-      </Table>
-    </Box>
-  );
-}
