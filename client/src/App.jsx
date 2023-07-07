@@ -36,7 +36,7 @@ const App = () => {
 
         <Route
           exact
-          path="/kyc2"
+          path="/kyc-2"
           element={
             // <UserPrivateRoute>
             <MultiStep />
