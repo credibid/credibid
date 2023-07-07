@@ -53,7 +53,7 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
         <FormControl>
           <FormLabel>Employer Number</FormLabel>
           <Input
-            type="text"
+            type="number"
             value={previousEmployment.emloyerNumber}
             onChange={(e) =>
               setPreviousEmployment({
@@ -61,7 +61,7 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 emloyerNumber: e.target.value,
               })
             }
-            placeholder="e.g. E-12345"
+            placeholder="e.g. 12345"
           />
         </FormControl>
         <FormControl>
