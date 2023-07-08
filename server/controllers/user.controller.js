@@ -212,11 +212,11 @@ const getCustomerKyc = async (req, res) => {
   try {
     const userId = req.authUser;
     console.log('userId', userId);
-    const currentCustomer = await customerKycs.findOne({ userId });
-    if (!currentCustomer)
+    const basicKyc = await customerKycs.findOne({ userId });
+    const assetsKyc = await AssetsKYC.findOne({ userId });
+    if (!basicKyc || !assetsKyc)
       return res.status(400).json({ error: 'No KYC found' });
-    return res.status(200).json(currentCustomer);
-    // return res.status(200).json('ok');
+    return res.status(200).json({ basicKyc, assetsKyc });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'Internal server error' });
