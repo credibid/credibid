@@ -1,3 +1,5 @@
+
+import UserKYCTwo from "./pages/UserKYCTwo";
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BankPrivateRoute from './components/common/BankPrivateRoute';
@@ -20,6 +22,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import Unauthorised from './components/common/Unauthorised';
 import UserKYCThree from './pages/UserKYCThree';
 
+
 const App = () => {
   const authChecked = useAuthCheck();
   if (!authChecked) {
@@ -29,6 +32,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+
+
+
         <Route exact path='/' element={<LandingPage />} />
         <Route exact path='/login' element={<UserLogin />} />
         <Route exact path='/setrole' element={<SetRole />} />
@@ -38,10 +44,21 @@ const App = () => {
         <Route
           exact
           path='/user-kyc'
+
           element={
-            <UserPrivateRoute>
-              <UserKYC />
-            </UserPrivateRoute>
+            // <UserPrivateRoute>
+            <UserKYC />
+            // </UserPrivateRoute>
+          }
+        />
+
+        <Route
+          exact
+          path="/kyc-2"
+          element={
+            // <UserPrivateRoute>
+            <UserKYCTwo />
+            // </UserPrivateRoute>
           }
         />
         <Route
