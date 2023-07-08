@@ -9,6 +9,7 @@ const {
   setUserRole,
   getCustomerKyc,
   assetsKYC,
+  worksKYC,
 } = require('../controllers/user.controller');
 const authentication = require('../middlewares/authenticaion.middleware');
 
@@ -20,6 +21,8 @@ userRouter.get('/kyc', authentication, getCustomerKyc);
 userRouter.get('/', authentication, getUserByToken);
 userRouter.post('/thirdpartylogin', thirdPartyLogin);
 userRouter.post('/createkyc', authentication, createKyc);
+userRouter.post('/worksKyc', authentication, worksKYC);
+
 userRouter.post('/assetskyc', authentication, assetsKYC);
 userRouter.put('/setuserrole', authentication, setUserRole);
 
