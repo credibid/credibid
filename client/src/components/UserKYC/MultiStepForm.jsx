@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Stack,
@@ -20,12 +20,15 @@ import AddressInfo from './AddressInfo';
 import BasicInfo from './BasicInfo';
 import { FiCheckSquare } from 'react-icons/fi';
 import { useCreatekycMutation } from '../../features/user/userApi';
+import DocumentUploader from '../documentUploader/DocumentUploader';
+import { useNavigate } from 'react-router-dom';
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState([]);
   const [parentObject, setParentObject] = useState({});
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [createKYC, { data, isLoading, isError, error, isSuccess }] =
     useCreatekycMutation();
@@ -77,20 +80,45 @@ const MultiStepForm = () => {
         />
       ),
     },
+    {
+      label: 'Step 4: Documents',
+      component: (
+        <DocumentUploader
+          handleNextStep={handleNextStep}
+          setParentObject={setParentObject}
+        />
+      ),
+    },
   ];
 
   const handleFormSubmit = () => {
     console.log(parentObject);
     createKYC(parentObject);
-
-    toast({
-      title: 'Success',
-      description: 'Form submitted successfully!',
-      status: 'success',
-      duration: 3000,
-      isClosable: true,
-    });
   };
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: 'Error',
+        // description: error.data.message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  }, [isError]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast({
+        title: 'Success',
+        description: 'Form submitted successfully!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+      navigate('/kyc-submitted');
+    }
+  }, [isSuccess]);
 
   return (
     <HStack alignItems={'flex-start'} display={{ base: 'block', md: 'flex' }}>
@@ -187,7 +215,11 @@ const MultiStepForm = () => {
                       {key.charAt(0).toUpperCase() +
                         key.slice(1).replace(/([A-Z])/g, ' $1')}
                     </Td>
-                    <Td>{value.charAt(0).toUpperCase() + value.slice(1)}</Td>
+                    <Td>
+                      {typeof value === 'object'
+                        ? Object.keys(value).length
+                        : value.charAt(0).toUpperCase() + value.slice(1)}
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>

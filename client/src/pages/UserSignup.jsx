@@ -19,7 +19,12 @@ import signupSvg from '../assets/signup.svg';
 import { FcGoogle } from 'react-icons/fc';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import MetaIcon from '../components/customIcons/MetaIcon';
-import { useRegisterMutation } from '../features/auth/authApi';
+import {
+  useRegisterMutation,
+  useThirdPartyLoginMutation,
+} from '../features/auth/authApi';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
 
 const UserSignup = () => {
   const [firstName, setFirstName] = useState('');
@@ -30,19 +35,19 @@ const UserSignup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-
+  const [
+    thirdPartyLogin,
+    {
+      data: thirdPartyData,
+      error: thirdPartyError,
+      isSuccess: thirdPartySuccess,
+    },
+  ] = useThirdPartyLoginMutation();
   const [signup, { data, isLoading, isError, error, isSuccess }] =
     useRegisterMutation();
 
   const toast = useToast();
-
-  const handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleLastNameChange = (e) => {
-    setLastName(e.target.value);
-  };
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -84,14 +89,8 @@ const UserSignup = () => {
       email_address: email,
       password: password,
     };
-    console.log(data);
     signup(data);
   };
-
-  useEffect(() => {
-    console.log(error);
-    console.log(data);
-  }, [error, data]);
 
   useEffect(() => {
     if (isError) {
@@ -111,8 +110,22 @@ const UserSignup = () => {
         duration: 3000,
         isClosable: true,
       });
+      navigate('/login');
     }
   }, [isError, isSuccess]);
+
+  useEffect(() => {
+    if (thirdPartySuccess) {
+      toast({
+        title: 'Account created.',
+        description: 'We have created your account for you.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+      navigate('/setrole');
+    }
+  }, [thirdPartySuccess]);
 
   return (
     <HStack h={'100vh'}>
@@ -215,20 +228,25 @@ const UserSignup = () => {
               <Button type='submit' colorScheme='blue' width={'full'}>
                 Sign Up
               </Button>
-              <Button
-                leftIcon={<FcGoogle size={20} />}
-                type='submit'
-                colorScheme='gray'
-                width={'full'}>
-                Sign up with Google
-              </Button>
-              <Button
-                leftIcon={<MetaIcon size={22} />}
-                type='submit'
-                colorScheme='gray'
-                width={'full'}>
-                Sign up with Meta
-              </Button>
+              <Text>or</Text>
+              <GoogleOAuthProvider clientId='211149816915-592u5vukc6nrfk5bk0vphpimu6cmvtf0.apps.googleusercontent.com'>
+                <GoogleLogin
+                  size='100px'
+                  theme='outline'
+                  shape='square'
+                  width='100vw'
+                  // useOneTap
+                  onSuccess={(credentialResponse) => {
+                    const token = credentialResponse.credential;
+
+                    thirdPartyLogin({ token });
+                  }}
+                  onError={() => {
+                    console.log('Login Failed');
+                  }}
+                  // type={'icon'}
+                />
+              </GoogleOAuthProvider>
             </VStack>
           </form>
         </Box>

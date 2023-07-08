@@ -1,3 +1,4 @@
+import UserKYCTwo from "./pages/UserKYCTwo";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BankPrivateRoute from "./components/common/BankPrivateRoute";
@@ -29,26 +30,63 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<LandingPage />} />
+        <Route exact path='/' element={<QuickLink />} />
         <Route exact path='/login' element={<UserLogin />} />
         <Route exact path='/setrole' element={<SetRole />} />
         <Route exact path='/signup' element={<UserSignup />} />
+
         <Route
           exact
-          path='/assets-kyc'
+          path='/kyc'
           element={
             <UserPrivateRoute>
-              <UserKYCThree />
+              <UserKYC />
             </UserPrivateRoute>
           }
         />
         <Route
           exact
-          path='/user-kyc'
+          path='/kyc-submitted'
           element={
             <UserPrivateRoute>
-              <UserKYC />
+              <CustomerPending />
             </UserPrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path='/bank-form'
+          element={
+            <BankPrivateRoute>
+              <BankForm />
+            </BankPrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path='/pending-request'
+          element={
+            <BankPrivateRoute>
+              <BankPending />
+            </BankPrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path='/bank-dashboard'
+          element={
+            <BankPrivateRoute>
+              <BankDashboard />
+            </BankPrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path='/admin-dashboard'
+          element={
+            <AdminPrivateRoute>
+              <AdminDashboard />
+            </AdminPrivateRoute>
           }
         />
         <Route
