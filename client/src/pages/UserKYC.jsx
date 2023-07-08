@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import MultiStepForm from '../components/UserKYC/MultiStepForm';
 import Layout from '../components/common/Layout';
 import { useGetKycQuery } from '../features/user/userApi';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/common/Spinner';
+import BasicKycComponent from '../components/UserKYC/BasicKycComponent';
 
 const UserKYC = () => {
   const {
@@ -16,17 +16,18 @@ const UserKYC = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (kycSuccess) {
-      navigate('/kyc-submitted');
+      console.log(kycData);
+      if (kycData.basicKyc) navigate('/works-kyc');
     }
   }, [kycSuccess]);
 
   return (
     <>
-      {kycSuccess || isLoading ? (
+      {kycData?.basicKyc || isLoading ? (
         <Loader />
       ) : (
         <Layout>
-          <MultiStepForm />
+          <BasicKycComponent />
         </Layout>
       )}
     </>

@@ -33,7 +33,15 @@ const App = () => {
         <Route exact path='/login' element={<UserLogin />} />
         <Route exact path='/setrole' element={<SetRole />} />
         <Route exact path='/signup' element={<UserSignup />} />
-        <Route exact path='/second' element={<UserKYCTwo />} />
+        <Route
+          exact
+          path='/works-kyc'
+          element={
+            <UserPrivateRoute>
+              <UserKYCTwo />
+            </UserPrivateRoute>
+          }
+        />
         <Route
           exact
           path='/assets-kyc'

@@ -4,7 +4,14 @@ export const userApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createkyc: builder.mutation({
       query: (data) => ({
-        url: `/user/createkyc`,
+        url: `/user/basickyc`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    workskyc: builder.mutation({
+      query: (data) => ({
+        url: `/user/workskyc`,
         method: 'POST',
         body: data,
       }),
@@ -38,4 +45,5 @@ export const {
   useSetRoleMutation,
   useGetKycQuery,
   useAssetskycMutation,
+  useWorkskycMutation,
 } = userApi;

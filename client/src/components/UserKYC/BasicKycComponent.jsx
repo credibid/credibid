@@ -23,7 +23,7 @@ import { useCreatekycMutation } from '../../features/user/userApi';
 import DocumentUploader from '../documentUploader/DocumentUploader';
 import { useNavigate } from 'react-router-dom';
 
-const MultiStepForm = () => {
+const BasicKycComponent = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState([]);
   const [parentObject, setParentObject] = useState({});
@@ -116,7 +116,7 @@ const MultiStepForm = () => {
         duration: 3000,
         isClosable: true,
       });
-      navigate('/kyc-submitted');
+      navigate('/works-kyc');
     }
   }, [isSuccess]);
 
@@ -231,4 +231,4 @@ const MultiStepForm = () => {
   );
 };
 
-export default MultiStepForm;
+export default BasicKycComponent;

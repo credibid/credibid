@@ -8,6 +8,7 @@ import {
   Input,
   Text,
   VStack,
+  useToast,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import loginSvg from '../assets/login.svg';
@@ -25,6 +26,7 @@ const UserLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const toast = useToast();
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -53,8 +55,27 @@ const UserLogin = () => {
   useEffect(() => {
     if (isSuccess) {
       navigate('/setrole');
+      toast({
+        title: 'Login Successful',
+        description: 'You have successfully logged in',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
     }
   }, [isSuccess]);
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: 'Login Failed',
+        description: error.data.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  }, [isError]);
+
   useEffect(() => {
     if (thirdPartySuccess) {
       navigate('/setrole');

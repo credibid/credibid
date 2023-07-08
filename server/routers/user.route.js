@@ -20,9 +20,8 @@ userRouter.post('/login', loginUser);
 userRouter.get('/kyc', authentication, getCustomerKyc);
 userRouter.get('/', authentication, getUserByToken);
 userRouter.post('/thirdpartylogin', thirdPartyLogin);
-userRouter.post('/createkyc', authentication, createKyc);
-userRouter.post('/worksKyc', authentication, worksKYC);
-
+userRouter.post('/basickyc', authentication, createKyc);
+userRouter.post('/workskyc', authentication, worksKYC);
 userRouter.post('/assetskyc', authentication, assetsKYC);
 userRouter.put('/setuserrole', authentication, setUserRole);
 
