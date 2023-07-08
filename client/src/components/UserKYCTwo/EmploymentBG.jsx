@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Stack,
   Button,
@@ -7,17 +7,17 @@ import {
   Input,
   Select,
   useToast,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const EmploymentBg = ({ handleNextStep, setParentObject }) => {
   const [employmentBackground, setEmploymentBackground] = useState({
-    dependent: "",
-    emloyerNumber: "",
-    companyName: "",
-    economicActivity: "",
-    startOfContractDate: "",
-    position: "",
-    monthlyIncome: "",
+    dependent: '',
+    emloyerNumber: '',
+    companyName: '',
+    economicActivity: '',
+    startOfContractDate: '',
+    position: '',
+    monthlyIncome: '',
   });
 
   const toast = useToast();
@@ -25,41 +25,11 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (employmentBackground.dependent === "independent") {
-      if (
-        employmentBackground.economicActivity.trim() !== "" &&
-        employmentBackground.startOfContractDate.trim() !== "" &&
-        employmentBackground.monthlyIncome.trim() !== ""
-      )
-        setParentObject((prevObject) => ({
-          ...prevObject,
-          employmentBackground,
-        }));
-      handleNextStep();
-    } else if (employmentBackground.dependent === "dependent") {
-      if (
-        employmentBackground.emloyerNumber.trim() !== "" &&
-        employmentBackground.companyName.trim() !== "" &&
-        employmentBackground.economicActivity.trim() !== "" &&
-        employmentBackground.startOfContractDate.trim() !== "" &&
-        employmentBackground.position.trim() !== "" &&
-        employmentBackground.monthlyIncome.trim() !== ""
-      )
-        setParentObject((prevObject) => ({
-          ...prevObject,
-          employmentBackground,
-        }));
-      handleNextStep();
-    } else {
-      toast({
-        title: "Error",
-        description: "Please fill in all the required fields.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-    }
+    setParentObject((prevObject) => ({
+      ...prevObject,
+      employmentBackground,
+    }));
+    handleNextStep();
   };
 
   return (
@@ -74,19 +44,18 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
                 ...employmentBackground,
                 dependent: e.target.value,
               })
-            }
-          >
-            <option value="">Select Dependent or Independent</option>
-            <option value="dependent">Dependent</option>
-            <option value="independent">Independent</option>
+            }>
+            <option value=''>Select Dependent or Independent</option>
+            <option value='dependent'>Dependent</option>
+            <option value='independent'>Independent</option>
           </Select>
         </FormControl>
         <FormControl>
-          {employmentBackground.dependent === "dependent" ? (
+          {employmentBackground.dependent === 'dependent' ? (
             <>
               <FormLabel>Unique identification number employer</FormLabel>
               <Input
-                type="number"
+                type='number'
                 value={employmentBackground.emloyerNumber}
                 onChange={(e) =>
                   setEmploymentBackground({
@@ -94,7 +63,7 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
                     emloyerNumber: e.target.value,
                   })
                 }
-                placeholder="e.g. 1234567890"
+                placeholder='e.g. 1234567890'
               />
             </>
           ) : (
@@ -102,11 +71,11 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
           )}
         </FormControl>
         <FormControl>
-          {employmentBackground.dependent === "dependent" ? (
+          {employmentBackground.dependent === 'dependent' ? (
             <>
               <FormLabel>Company Name</FormLabel>
               <Input
-                type="text"
+                type='text'
                 value={employmentBackground.companyName}
                 onChange={(e) =>
                   setEmploymentBackground({
@@ -114,7 +83,7 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
                     companyName: e.target.value,
                   })
                 }
-                placeholder="e.g. ABC123"
+                placeholder='e.g. ABC123'
               />
             </>
           ) : (
@@ -122,12 +91,12 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
           )}
         </FormControl>
         <FormControl>
-          {employmentBackground.dependent === "dependent" ||
-          employmentBackground.dependent === "independent" ? (
+          {employmentBackground.dependent === 'dependent' ||
+          employmentBackground.dependent === 'independent' ? (
             <>
               <FormLabel>Economic Activity</FormLabel>
               <Input
-                type="text"
+                type='text'
                 value={employmentBackground.economicActivity}
                 onChange={(e) =>
                   setEmploymentBackground({
@@ -135,18 +104,18 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
                     economicActivity: e.target.value,
                   })
                 }
-                placeholder="e.g. ABC123"
+                placeholder='e.g. ABC123'
               />
             </>
           ) : null}
         </FormControl>
         <FormControl>
-          {employmentBackground.dependent === "dependent" ||
-          employmentBackground.dependent === "independent" ? (
+          {employmentBackground.dependent === 'dependent' ||
+          employmentBackground.dependent === 'independent' ? (
             <>
               <FormLabel>Start of contract date</FormLabel>
               <Input
-                type="date"
+                type='date'
                 value={employmentBackground.startOfContractDate}
                 onChange={(e) =>
                   setEmploymentBackground({
@@ -160,11 +129,11 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
           ) : null}
         </FormControl>
         <FormControl>
-          {employmentBackground.dependent === "dependent" ? (
+          {employmentBackground.dependent === 'dependent' ? (
             <>
               <FormLabel>Position or job title</FormLabel>
               <Input
-                type="text"
+                type='text'
                 value={employmentBackground.position}
                 onChange={(e) =>
                   setEmploymentBackground({
@@ -172,18 +141,18 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
                     position: e.target.value,
                   })
                 }
-                placeholder="e.g. ABC123"
+                placeholder='e.g. ABC123'
               />
             </>
           ) : null}
         </FormControl>
         <FormControl>
-          {employmentBackground.dependent === "dependent" ||
-          employmentBackground.dependent === "independent" ? (
+          {employmentBackground.dependent === 'dependent' ||
+          employmentBackground.dependent === 'independent' ? (
             <>
               <FormLabel>Monthly Income ($)</FormLabel>
               <Input
-                type="number"
+                type='number'
                 value={employmentBackground.monthlyIncome}
                 onChange={(e) =>
                   setEmploymentBackground({
@@ -191,12 +160,12 @@ const EmploymentBg = ({ handleNextStep, setParentObject }) => {
                     monthlyIncome: e.target.value,
                   })
                 }
-                placeholder="e.g. 10000000"
+                placeholder='e.g. 10000000'
               />
             </>
           ) : null}
         </FormControl>
-        <Button colorScheme="blue" type="submit">
+        <Button colorScheme='blue' type='submit'>
           Submit & Next
         </Button>
       </Stack>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Stack,
   Button,
@@ -7,51 +7,31 @@ import {
   Input,
   Select,
   useToast,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const PartnerAddress = ({ handleNextStep, setParentObject }) => {
   const [partnerAddress, setPartnerAddress] = useState({
-    street: "",
-    number: "",
-    house: "",
-    department: "",
-    commune: "",
-    city: "",
-    region: "",
-    phone: "",
-    email: "",
+    street: '',
+    number: '',
+    house: '',
+    department: '',
+    commune: '',
+    city: '',
+    region: '',
+    phone: '',
+    email: '',
   });
 
   const toast = useToast();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (
-      partnerAddress.street.trim() !== "" &&
-      partnerAddress.number.trim() !== "" &&
-      partnerAddress.house.trim() !== "" &&
-      partnerAddress.department.trim() !== "" &&
-      partnerAddress.commune.trim() !== "" &&
-      partnerAddress.city.trim() !== "" &&
-      partnerAddress.region.trim() !== "" &&
-      partnerAddress.phone.trim() !== "" &&
-      partnerAddress.email.trim() !== ""
-    ) {
-      setParentObject((prevObject) => ({
-        ...prevObject,
-        partnerAddress,
-      }));
-      handleNextStep();
-    } else {
-      toast({
-        title: "Error",
-        description: "Please fill in all the required fields.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-    }
+
+    setParentObject((prevObject) => ({
+      ...prevObject,
+      partnerAddress,
+    }));
+    handleNextStep();
   };
 
   return (
@@ -60,7 +40,7 @@ const PartnerAddress = ({ handleNextStep, setParentObject }) => {
         <FormControl>
           <FormLabel>Street</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={partnerAddress.street}
             onChange={(e) =>
               setPartnerAddress({
@@ -68,13 +48,13 @@ const PartnerAddress = ({ handleNextStep, setParentObject }) => {
                 street: e.target.value,
               })
             }
-            placeholder="e.g. 123 Main St."
+            placeholder='e.g. 123 Main St.'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Number</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={partnerAddress.number}
             onChange={(e) =>
               setPartnerAddress({
@@ -82,13 +62,13 @@ const PartnerAddress = ({ handleNextStep, setParentObject }) => {
                 number: e.target.value,
               })
             }
-            placeholder="e.g. 123-291023"
+            placeholder='e.g. 123-291023'
           />
         </FormControl>
         <FormControl>
           <FormLabel>House</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={partnerAddress.house}
             onChange={(e) =>
               setPartnerAddress({
@@ -96,13 +76,13 @@ const PartnerAddress = ({ handleNextStep, setParentObject }) => {
                 house: e.target.value,
               })
             }
-            placeholder="e.g. 123 Main St."
+            placeholder='e.g. 123 Main St.'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Department</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={partnerAddress.department}
             onChange={(e) =>
               setPartnerAddress({
@@ -110,13 +90,13 @@ const PartnerAddress = ({ handleNextStep, setParentObject }) => {
                 department: e.target.value,
               })
             }
-            placeholder="e.g. 123 Main St."
+            placeholder='e.g. 123 Main St.'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Commune</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={partnerAddress.commune}
             onChange={(e) =>
               setPartnerAddress({
@@ -124,13 +104,13 @@ const PartnerAddress = ({ handleNextStep, setParentObject }) => {
                 commune: e.target.value,
               })
             }
-            placeholder="e.g. 123 Main St."
+            placeholder='e.g. 123 Main St.'
           />
         </FormControl>
         <FormControl>
           <FormLabel>City</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={partnerAddress.city}
             onChange={(e) =>
               setPartnerAddress({
@@ -138,13 +118,13 @@ const PartnerAddress = ({ handleNextStep, setParentObject }) => {
                 city: e.target.value,
               })
             }
-            placeholder="e.g. Barcelona"
+            placeholder='e.g. Barcelona'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Region</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={partnerAddress.region}
             onChange={(e) =>
               setPartnerAddress({
@@ -152,13 +132,13 @@ const PartnerAddress = ({ handleNextStep, setParentObject }) => {
                 region: e.target.value,
               })
             }
-            placeholder="e.g. Catalonia"
+            placeholder='e.g. Catalonia'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Phone</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={partnerAddress.phone}
             onChange={(e) =>
               setPartnerAddress({
@@ -166,13 +146,13 @@ const PartnerAddress = ({ handleNextStep, setParentObject }) => {
                 phone: e.target.value,
               })
             }
-            placeholder="e.g. 123-291023"
+            placeholder='e.g. 123-291023'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Email</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={partnerAddress.email}
             onChange={(e) =>
               setPartnerAddress({
@@ -180,10 +160,10 @@ const PartnerAddress = ({ handleNextStep, setParentObject }) => {
                 email: e.target.value,
               })
             }
-            placeholder="e.g. john@gmail.com"
+            placeholder='e.g. john@gmail.com'
           />
         </FormControl>
-        <Button type="submit" colorScheme="blue">
+        <Button type='submit' colorScheme='blue'>
           Submit
         </Button>
       </Stack>

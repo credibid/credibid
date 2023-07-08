@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React from 'react';
+import { useState } from 'react';
 import {
   Stack,
   Button,
@@ -8,17 +8,17 @@ import {
   Input,
   Select,
   useToast,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
   const [partnerEmploymentBg, setPartnerEmploymentBg] = useState({
-    dependent: "",
-    emloyerNumber: "",
-    companyName: "",
-    economicActivity: "",
-    startOfContractDate: "",
-    position: "",
-    monthlyIncome: "",
+    dependent: '',
+    emloyerNumber: '',
+    companyName: '',
+    economicActivity: '',
+    startOfContractDate: '',
+    position: '',
+    monthlyIncome: '',
   });
 
   const toast = useToast();
@@ -26,41 +26,11 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (partnerEmploymentBg.dependent === "independent") {
-      if (
-        partnerEmploymentBg.economicActivity.trim() !== "" &&
-        partnerEmploymentBg.startOfContractDate.trim() !== "" &&
-        partnerEmploymentBg.monthlyIncome.trim() !== ""
-      )
-        setParentObject((prevObject) => ({
-          ...prevObject,
-          partnerEmploymentBg,
-        }));
-      handleNextStep();
-    } else if (partnerEmploymentBg.dependent === "dependent") {
-      if (
-        partnerEmploymentBg.emloyerNumber.trim() !== "" &&
-        partnerEmploymentBg.companyName.trim() !== "" &&
-        partnerEmploymentBg.economicActivity.trim() !== "" &&
-        partnerEmploymentBg.startOfContractDate.trim() !== "" &&
-        partnerEmploymentBg.position.trim() !== "" &&
-        partnerEmploymentBg.monthlyIncome.trim() !== ""
-      )
-        setParentObject((prevObject) => ({
-          ...prevObject,
-          partnerEmploymentBg,
-        }));
-      handleNextStep();
-    } else {
-      toast({
-        title: "Error",
-        description: "Please fill in all the required fields.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-    }
+    setParentObject((prevObject) => ({
+      ...prevObject,
+      partnerEmploymentBg,
+    }));
+    handleNextStep();
   };
 
   return (
@@ -75,19 +45,18 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
                 ...partnerEmploymentBg,
                 dependent: e.target.value,
               })
-            }
-          >
-            <option value="">Select Dependent or Independent</option>
-            <option value="dependent">Dependent</option>
-            <option value="independent">Independent</option>
+            }>
+            <option value=''>Select Dependent or Independent</option>
+            <option value='dependent'>Dependent</option>
+            <option value='independent'>Independent</option>
           </Select>
         </FormControl>
         <FormControl>
-          {partnerEmploymentBg.dependent === "dependent" ? (
+          {partnerEmploymentBg.dependent === 'dependent' ? (
             <>
               <FormLabel>Unique identification number employer</FormLabel>
               <Input
-                type="number"
+                type='number'
                 value={partnerEmploymentBg.emloyerNumber}
                 onChange={(e) =>
                   setPartnerEmploymentBg({
@@ -95,7 +64,7 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
                     emloyerNumber: e.target.value,
                   })
                 }
-                placeholder="e.g. 1234567890"
+                placeholder='e.g. 1234567890'
               />
             </>
           ) : (
@@ -103,11 +72,11 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
           )}
         </FormControl>
         <FormControl>
-          {partnerEmploymentBg.dependent === "dependent" ? (
+          {partnerEmploymentBg.dependent === 'dependent' ? (
             <>
               <FormLabel>Company Name</FormLabel>
               <Input
-                type="text"
+                type='text'
                 value={partnerEmploymentBg.companyName}
                 onChange={(e) =>
                   setPartnerEmploymentBg({
@@ -115,7 +84,7 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
                     companyName: e.target.value,
                   })
                 }
-                placeholder="e.g. ABC123"
+                placeholder='e.g. ABC123'
               />
             </>
           ) : (
@@ -123,12 +92,12 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
           )}
         </FormControl>
         <FormControl>
-          {partnerEmploymentBg.dependent === "dependent" ||
-          partnerEmploymentBg.dependent === "independent" ? (
+          {partnerEmploymentBg.dependent === 'dependent' ||
+          partnerEmploymentBg.dependent === 'independent' ? (
             <>
               <FormLabel>Economic Activity</FormLabel>
               <Input
-                type="text"
+                type='text'
                 value={partnerEmploymentBg.economicActivity}
                 onChange={(e) =>
                   setPartnerEmploymentBg({
@@ -136,18 +105,18 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
                     economicActivity: e.target.value,
                   })
                 }
-                placeholder="e.g. ABC123"
+                placeholder='e.g. ABC123'
               />
             </>
           ) : null}
         </FormControl>
         <FormControl>
-          {partnerEmploymentBg.dependent === "dependent" ||
-          partnerEmploymentBg.dependent === "independent" ? (
+          {partnerEmploymentBg.dependent === 'dependent' ||
+          partnerEmploymentBg.dependent === 'independent' ? (
             <>
               <FormLabel>Start of contract date</FormLabel>
               <Input
-                type="date"
+                type='date'
                 value={partnerEmploymentBg.startOfContractDate}
                 onChange={(e) =>
                   setPartnerEmploymentBg({
@@ -161,11 +130,11 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
           ) : null}
         </FormControl>
         <FormControl>
-          {partnerEmploymentBg.dependent === "dependent" ? (
+          {partnerEmploymentBg.dependent === 'dependent' ? (
             <>
               <FormLabel>Position or job title</FormLabel>
               <Input
-                type="text"
+                type='text'
                 value={partnerEmploymentBg.position}
                 onChange={(e) =>
                   setPartnerEmploymentBg({
@@ -173,18 +142,18 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
                     position: e.target.value,
                   })
                 }
-                placeholder="e.g. ABC123"
+                placeholder='e.g. ABC123'
               />
             </>
           ) : null}
         </FormControl>
         <FormControl>
-          {partnerEmploymentBg.dependent === "dependent" ||
-          partnerEmploymentBg.dependent === "independent" ? (
+          {partnerEmploymentBg.dependent === 'dependent' ||
+          partnerEmploymentBg.dependent === 'independent' ? (
             <>
               <FormLabel>Monthly Income ($)</FormLabel>
               <Input
-                type="number"
+                type='number'
                 value={partnerEmploymentBg.monthlyIncome}
                 onChange={(e) =>
                   setPartnerEmploymentBg({
@@ -192,12 +161,12 @@ const PartnerEmploymentBg = ({ handleNextStep, setParentObject }) => {
                     monthlyIncome: e.target.value,
                   })
                 }
-                placeholder="e.g. 10000000"
+                placeholder='e.g. 10000000'
               />
             </>
           ) : null}
         </FormControl>
-        <Button colorScheme="blue" type="submit">
+        <Button colorScheme='blue' type='submit'>
           Submit & Next
         </Button>
       </Stack>

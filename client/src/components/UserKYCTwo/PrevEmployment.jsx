@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Stack,
   Button,
@@ -7,44 +7,27 @@ import {
   Input,
   Select,
   useToast,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const PrevEmployment = ({ handleNextStep, setParentObject }) => {
   const [previousEmployment, setPreviousEmployment] = useState({
-    emloyerNumber: "",
-    companyName: "",
-    businessLine: "",
-    economicActivity: "",
-    startOfEmploymentDate: "",
-    endOfEmploymentDate: "",
+    emloyerNumber: '',
+    companyName: '',
+    businessLine: '',
+    economicActivity: '',
+    startOfEmploymentDate: '',
+    endOfEmploymentDate: '',
   });
   const toast = useToast();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (
-      previousEmployment.emloyerNumber.trim() !== "" &&
-      previousEmployment.companyName.trim() !== "" &&
-      previousEmployment.businessLine.trim() !== "" &&
-      previousEmployment.economicActivity.trim() !== "" &&
-      previousEmployment.startOfEmploymentDate.trim() !== "" &&
-      previousEmployment.endOfEmploymentDate.trim() !== ""
-    ) {
-      setParentObject((prevObject) => ({
-        ...prevObject,
-        previousEmployment,
-      }));
-      handleNextStep();
-    } else {
-      toast({
-        title: "Error",
-        description: "Please fill in all the required fields.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-    }
+
+    setParentObject((prevObject) => ({
+      ...prevObject,
+      previousEmployment,
+    }));
+    handleNextStep();
   };
 
   return (
@@ -53,7 +36,7 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
         <FormControl>
           <FormLabel>Employer Number</FormLabel>
           <Input
-            type="number"
+            type='number'
             value={previousEmployment.emloyerNumber}
             onChange={(e) =>
               setPreviousEmployment({
@@ -61,13 +44,13 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 emloyerNumber: e.target.value,
               })
             }
-            placeholder="e.g. 12345"
+            placeholder='e.g. 12345'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Company Name</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={previousEmployment.companyName}
             onChange={(e) =>
               setPreviousEmployment({
@@ -75,13 +58,13 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 companyName: e.target.value,
               })
             }
-            placeholder="e.g. ABC Company"
+            placeholder='e.g. ABC Company'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Business Line</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={previousEmployment.businessLine}
             onChange={(e) =>
               setPreviousEmployment({
@@ -89,13 +72,13 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 businessLine: e.target.value,
               })
             }
-            placeholder="e.g. Manufacturing"
+            placeholder='e.g. Manufacturing'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Economic Activity</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={previousEmployment.economicActivity}
             onChange={(e) =>
               setPreviousEmployment({
@@ -103,13 +86,13 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 economicActivity: e.target.value,
               })
             }
-            placeholder="e.g. Manufacturing"
+            placeholder='e.g. Manufacturing'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Start of Employment Date</FormLabel>
           <Input
-            type="date"
+            type='date'
             value={previousEmployment.startOfEmploymentDate}
             onChange={(e) =>
               setPreviousEmployment({
@@ -117,13 +100,13 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 startOfEmploymentDate: e.target.value,
               })
             }
-            placeholder="e.g. 12/12/2023"
+            placeholder='e.g. 12/12/2023'
           />
         </FormControl>
         <FormControl>
           <FormLabel>End of Employment Date</FormLabel>
           <Input
-            type="date"
+            type='date'
             value={previousEmployment.endOfEmploymentDate}
             onChange={(e) =>
               setPreviousEmployment({
@@ -131,11 +114,11 @@ const PrevEmployment = ({ handleNextStep, setParentObject }) => {
                 endOfEmploymentDate: e.target.value,
               })
             }
-            placeholder="e.g. 12/12/2023"
+            placeholder='e.g. 12/12/2023'
           />
         </FormControl>
 
-        <Button colorScheme="blue" type="submit">
+        <Button colorScheme='blue' type='submit'>
           Submit & Next
         </Button>
       </Stack>

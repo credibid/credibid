@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Stack,
   Button,
@@ -7,13 +7,13 @@ import {
   Input,
   Select,
   useToast,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const BankInfo = ({ handleNextStep, setParentObject }) => {
   const [bankReferences, setBankReferences] = useState({
-    bankName: "",
-    product: "",
-    number: "",
+    bankName: '',
+    product: '',
+    number: '',
   });
 
   const toast = useToast();
@@ -21,28 +21,11 @@ const BankInfo = ({ handleNextStep, setParentObject }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (
-      bankReferences.bankName.trim() !== "" &&
-      bankReferences.product.trim() !== "" &&
-      bankReferences.number.trim() !== ""
-    ) {
-      console.log("Bank References: ", bankReferences);
-      console.log(typeof bankReferences.N);
-      setParentObject((prevObject) => ({
-        ...prevObject,
-        bankReferences,
-      }));
-      handleNextStep();
-    } else {
-      toast({
-        title: "Error",
-        description: "Please fill in all the required fields.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-    }
+    setParentObject((prevObject) => ({
+      ...prevObject,
+      bankReferences,
+    }));
+    handleNextStep();
   };
 
   return (
@@ -51,7 +34,7 @@ const BankInfo = ({ handleNextStep, setParentObject }) => {
         <FormControl>
           <FormLabel>Bank</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={bankReferences.bankName}
             onChange={(e) =>
               setBankReferences({
@@ -59,13 +42,13 @@ const BankInfo = ({ handleNextStep, setParentObject }) => {
                 bankName: e.target.value,
               })
             }
-            placeholder="Bank Name"
+            placeholder='Bank Name'
           />
         </FormControl>
         <FormControl>
           <FormLabel>Product</FormLabel>
           <Input
-            type="text"
+            type='text'
             value={bankReferences.product}
             onChange={(e) =>
               setBankReferences({
@@ -73,7 +56,7 @@ const BankInfo = ({ handleNextStep, setParentObject }) => {
                 product: e.target.value,
               })
             }
-            placeholder="Product"
+            placeholder='Product'
           />
         </FormControl>
         <FormControl>
@@ -81,7 +64,7 @@ const BankInfo = ({ handleNextStep, setParentObject }) => {
             N<sup>o</sup>
           </FormLabel>
           <Input
-            type="number"
+            type='number'
             value={bankReferences.number}
             onChange={(e) =>
               setBankReferences({
@@ -89,10 +72,10 @@ const BankInfo = ({ handleNextStep, setParentObject }) => {
                 number: e.target.value,
               })
             }
-            placeholder="number"
+            placeholder='number'
           />
         </FormControl>
-        <Button colorScheme="blue" type="submit">
+        <Button colorScheme='blue' type='submit'>
           Submit & Next
         </Button>
       </Stack>
