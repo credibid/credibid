@@ -3,6 +3,8 @@ const cors = require('cors');
 const { connectWithDatabase } = require('./db');
 const { PORT } = require('./config');
 const userRouter = require('./routers/user.route');
+const adminRouter = require('./routers/admin.route');
+const bankRouter = require('./routers/bank.route');
 // const authRouter = require('./routers/auth.route');
 
 const app = express();
@@ -24,6 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/user', userRouter);
+app.use('/admin', adminRouter);
+app.use('/bank', bankRouter);
 
 const startServer = async () => {
   try {

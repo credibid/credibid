@@ -1,0 +1,23 @@
+.upload_label{
+    /* color: #3182CE;
+    border: 2px solid #3182CE;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer; */
+}
+
+::-webkit-file-upload-button{
+    width: 100%;
+    color: #3182ce;
+    background: #ffffff91;
+    padding: 6px;
+    border: 2px dashed #3182ce;
+    border-radius: 50px;
+    text-transform: uppercase;
+    outline: none;
+    cursor: pointer;
+}
+::-webkit-file-upload-button:hover{
+    background: #57a2e970;
+}
