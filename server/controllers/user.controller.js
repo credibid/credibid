@@ -4,6 +4,7 @@ const { decodeJWT, getPermanentAuthToken } = require('../utils/authentication');
 const { encryptPassword, checkPassword } = require('../utils/password');
 const { extractedInfo } = require('../utils/extractedInfo');
 const AssetsKYC = require('../models/assetsKYC.model');
+const WorksKyc = require('../models/worksKYC.model');
 
 const createUser = async (req, res) => {
   try {
@@ -212,11 +213,12 @@ const getCustomerKyc = async (req, res) => {
   try {
     const userId = req.authUser;
     console.log('userId', userId);
+
     const basicKyc = await customerKycs.findOne({ userId });
+    const worksKyc = await WorksKyc.findOne({ userId });
     const assetsKyc = await AssetsKYC.findOne({ userId });
-    if (!basicKyc || !assetsKyc)
-      return res.status(400).json({ error: 'No KYC found' });
-    return res.status(200).json({ basicKyc, assetsKyc });
+
+    return res.status(200).json({ basicKyc, assetsKyc, worksKyc });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'Internal server error' });
@@ -239,6 +241,17 @@ const setUserRole = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+const worksKYC = async (req, res) => {
+  try {
+    const userId = req.authUser;
+    const obj = req.body;
+    const savedObject = await WorksKyc.create({ ...obj, userId });
+    return res.status(200).json({ savedObject });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -308,5 +321,6 @@ module.exports = {
   createKyc,
   setUserRole,
   getCustomerKyc,
+  worksKYC,
   assetsKYC,
 };
