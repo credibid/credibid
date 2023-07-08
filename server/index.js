@@ -32,7 +32,7 @@ app.use('/bank', bankRouter);
 const startServer = async () => {
   try {
     await connectWithDatabase();
-    app.listen(PORT, () =>
+    app.listen(PORT, '0.0.0.0', () =>
       console.log(`Server started at http://localhost:${PORT}`)
     );
   } catch (error) {
