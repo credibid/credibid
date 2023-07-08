@@ -6,7 +6,7 @@ export default function BankPrivateRoute({ children }) {
   const isLoggedIn = useAuth();
   const roleCheck = useRoleCheck();
   if (isLoggedIn) {
-    if (roleCheck === 'user') return children;
-    else return <Navigate to='/setrole' />;
+    if (roleCheck === 'bank') return children;
+    else return <Navigate to='/unauthorised' />;
   } else return <Navigate to='/login' />;
 }
