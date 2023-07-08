@@ -33,11 +33,11 @@ import { CheckIcon } from '@chakra-ui/icons';
 const BankRow = ({ bank, onUpdateStatus }) => {
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [showTickButton, setShowTickButton] = useState(false);
-  const [bankStatus, setBankStatus] = useState(bank.userId.status);
+  const [bankStatus, setBankStatus] = useState(bank?.userId?.status);
 
   useEffect(() => {
-    setBankStatus(bank.userId.status);
-  }, [bank.userId.status]);
+    setBankStatus(bank.userId?.status);
+  }, [bank.userId?.status]);
 
   const handleStatusChange = (e) => {
     setBankStatus(e.target.value);
@@ -56,7 +56,7 @@ const BankRow = ({ bank, onUpdateStatus }) => {
     <Tr>
       <Td>{bank.bankName}</Td>
       <Td>{bank.routingNumber}</Td>
-      <Td>{bank.userId.email_address}</Td>
+      <Td>{bank.userId?.email_address}</Td>
       <Td>
         <HStack align={'baseline'}>
           <Select
