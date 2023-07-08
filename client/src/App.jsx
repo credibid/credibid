@@ -8,7 +8,6 @@ import useRoleCheck from './hooks/useRoleCheck';
 import BankDashboard from './pages/BankDashboard';
 import BankForm from './pages/BankForm';
 import BankPending from './pages/BankPending';
-import QuickLink from './pages/QuickLink';
 import UserKYC from './pages/UserKYC';
 import UserLogin from './pages/UserLogin';
 import UserSignup from './pages/UserSignup';
