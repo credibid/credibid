@@ -18,7 +18,7 @@ const UserKYC = () => {
     if (kycSuccess) {
       if (kycData.assetsKyc) navigate('/kyc-submitted');
     }
-  }, [kycSuccess]);
+  }, [kycSuccess, kycData]);
 
   return (
     <>

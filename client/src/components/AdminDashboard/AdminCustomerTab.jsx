@@ -30,7 +30,7 @@ import {
   useDeleteCustomerMutation,
 } from '../../features/admin/admin';
 import { DeleteIcon, ViewIcon } from '@chakra-ui/icons';
-import CustomerDetails from '../BankDashboard/CustomerDetails';
+import CustomerDetails from '../CustomerDetails/CustomerDetails';
 
 const AdminCustomerTab = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -102,19 +102,6 @@ const AdminCustomerTab = () => {
   const handleViewDetails = (customer) => {
     setCustomer(customer);
     onOpen();
-  };
-
-  const handlePrint = () => {
-    const tableElements = document.querySelectorAll('.printable-table');
-    tableElements.forEach((element) => {
-      element.style.display = 'table';
-    });
-
-    window.print(tableElements);
-
-    tableElements.forEach((element) => {
-      element.style.display = 'none';
-    });
   };
 
   const handleDelete = (id) => {
@@ -228,10 +215,10 @@ const AdminCustomerTab = () => {
       <Modal isOpen={isOpen} onClose={onClose} size={'4xl'}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>{customer.firstName}'s Details</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <CustomerDetails userData={customer} />
+            <CustomerDetails userId={customer.userId} />
           </ModalBody>
         </ModalContent>
       </Modal>

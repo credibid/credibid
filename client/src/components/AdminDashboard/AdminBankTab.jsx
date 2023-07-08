@@ -23,7 +23,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { useGetCustomersQuery } from '../../features/bank/bankApi';
-import CustomerDetails from '../BankDashboard/CustomerDetails';
+import CustomerDetails from '../CustomerDetails/CustomerDetails';
 import {
   useAllBanksQuery,
   useChangeUserStatusMutation,

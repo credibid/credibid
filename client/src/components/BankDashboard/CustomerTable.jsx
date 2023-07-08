@@ -20,7 +20,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { useGetCustomersQuery } from '../../features/bank/bankApi';
-import CustomerDetails from './CustomerDetails';
+import CustomerDetails from '../CustomerDetails/CustomerDetails';
 
 const CustomerTable = () => {
   const [searchQuery, setSearchQuery] = useState('');

@@ -7,6 +7,7 @@ const {
   deleteBankById,
   getUserById,
   changeUserStatusById,
+  getCustomerKyc,
 } = require('../controllers/admin.controller');
 const adminRouter = express.Router();
 
@@ -23,5 +24,7 @@ adminRouter.put(
   adminAuthentication,
   changeUserStatusById
 );
+
+adminRouter.get('/getcustomerkyc/:id', adminAuthentication, getCustomerKyc);
 
 module.exports = adminRouter;

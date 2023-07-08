@@ -37,6 +37,12 @@ export const adminApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getCustomerKyc: builder.query({
+      query: (id) => ({
+        url: `/admin/getcustomerkyc/${id}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -46,4 +52,5 @@ export const {
   useAllCustomersQuery,
   useChangeUserStatusMutation,
   useDeleteBankMutation,
+  useGetCustomerKycQuery,
 } = adminApi;

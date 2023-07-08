@@ -1,6 +1,8 @@
+const AssetsKYC = require('../models/assetsKYC.model');
 const banks = require('../models/bank.model');
 const customerKycs = require('../models/customerKYC.model');
 const users = require('../models/user.model');
+const WorksKyc = require('../models/worksKYC.model');
 const { extractedInfo } = require('../utils/extractedInfo');
 
 const getAllCustomers = async (req, res) => {
@@ -69,10 +71,26 @@ const changeUserStatusById = async (req, res) => {
   }
 };
 
+const getCustomerKyc = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    console.log('userId', userId);
+    const basicKyc = await customerKycs.findOne({ userId });
+    const worksKyc = await WorksKyc.findOne({ userId });
+    const assetsKyc = await AssetsKYC.findOne({ userId });
+
+    return res.status(200).json({ basicKyc, assetsKyc, worksKyc });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 module.exports = {
   getAllCustomers,
   getAllBanks,
   deleteCustomerById,
   deleteBankById,
   changeUserStatusById,
+  getCustomerKyc,
 };
